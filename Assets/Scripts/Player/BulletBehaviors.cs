@@ -5,13 +5,28 @@ using UnityEngine;
 public class BulletBehaviors : MonoBehaviour
    
 {
-    private float speed;
-
+    float speed;
+    int crit;
+    public int power;
+    
+    GameController gc;
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = GameObject.Find("GameController").GetComponent<GameController>().speedBulletMove;
+        gc = GameObject.Find("GameController").GetComponent<GameController>();
+
+
+
+        //Calculo de critico
+        speed = gc.speedBulletMove;
+        crit = Random.Range(1, 100);
+
+        if (crit <= gc.crit) 
+            power = gc.power * 2; 
+        else 
+            power = gc.power;
+        Destroy(this.gameObject, 5);
     }
 
     // Update is called once per frame
@@ -22,7 +37,7 @@ public class BulletBehaviors : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "End") Destroy(this.gameObject);
+        if (collision.gameObject.name == "EndBullets") Destroy(this.gameObject);
     }
 
 }

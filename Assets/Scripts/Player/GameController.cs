@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
     public float speedBulletMove = 2;
     public float spawnBulletDelay = 2;
 
+    public int power = 3;
+    public int crit = 50;
+
 
     void Start()
     {
@@ -27,12 +30,14 @@ public class GameController : MonoBehaviour
     {
         PlayerPrefs.SetFloat("speedBullet", speedBulletMove);
         PlayerPrefs.SetFloat("spawnBullet", spawnBulletDelay);
+        PlayerPrefs.SetInt("power", power);
     }
 
     public void LoadStats()
     {
         speedBulletMove = PlayerPrefs.GetFloat("speedBullet");
         spawnBulletDelay = PlayerPrefs.GetFloat("spawnBullet");
+        power = PlayerPrefs.GetInt("Power");
     }
 
     public void StatsCheck()
@@ -45,6 +50,11 @@ public class GameController : MonoBehaviour
             spawnBulletDelay = 2;
             PlayerPrefs.SetFloat("spawnBullet", 2);
         }
+        if (power <= 0) {
+            power = 3;
+            PlayerPrefs.SetInt("power", 3);
+        }
     }
+
 
 }
