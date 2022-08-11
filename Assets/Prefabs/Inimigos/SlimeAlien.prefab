@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 0
+  txtDmgReceive: {fileID: 3684128261669747468, guid: 63d9cc9fd34213a40a1112a2c388f6c5, type: 3}
 --- !u!50 &3530361117129865977
 Rigidbody2D:
   serializedVersion: 4

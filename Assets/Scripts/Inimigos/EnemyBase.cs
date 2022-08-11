@@ -7,6 +7,8 @@ public class EnemyBase : MonoBehaviour
     public int maxLife;
     float speedMove = 1;
 
+    public GameObject txtDmgReceive;
+
     private void Awake()
     {
         maxLife = 10;
@@ -24,7 +26,15 @@ public class EnemyBase : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(collision.gameObject);
-            maxLife -= collision.gameObject.GetComponent<BulletBehaviors>().power;
+            var bulletStatus = collision.gameObject.GetComponent<BulletBehaviors>();
+
+
+            maxLife -= bulletStatus.power;
+
+            //Spawn txt
+            Instantiate(txtDmgReceive, transform.position, Quaternion.identity);
+            txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().dmgValue = bulletStatus.power;
+            txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().crit = bulletStatus.critic;
         }
 
         if (collision.gameObject.name == "EndEnemies") Destroy(this.gameObject);

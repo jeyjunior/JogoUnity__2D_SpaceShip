@@ -996,8 +996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 5340139303500190011, guid: 9221dd0264149dd49abaa51504977fd0, type: 3}
-  delaySpawn: 1
-  spawnedQuantity: 10
+  delaySpawn: 3
+  spawnedQuantity: 3
 --- !u!4 &1067539844
 Transform:
   m_ObjectHideFlags: 0
