@@ -6,50 +6,45 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    //SpaceShip atributos
     public float speedBulletMove = 2;
     public float spawnBulletDelay = 2;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         LoadStats();
-        if (SceneManager.GetActiveScene().name == "Level" || SceneManager.GetActiveScene().name == "Main")
-        {
-            //Carrega os upgrades para o player
-            
-        }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        StatsCheck();
     }
-
-    public void BtnMain()
-    {
-        SceneManager.LoadScene("Main");
-    }
-
-    public void BtnLevel()
-    {
-        SceneManager.LoadScene("Level");
-        //Salva os upgrades no player
-        SaveStats();
-    }
-
 
 
     public void SaveStats()
     {
-        PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
-        PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
+        PlayerPrefs.SetFloat("speedBullet", speedBulletMove);
+        PlayerPrefs.SetFloat("spawnBullet", spawnBulletDelay);
     }
 
     public void LoadStats()
     {
-        PlayerPrefs.GetFloat("speedBulletMove");
-        PlayerPrefs.GetFloat("spawnBulletDelay");
+        speedBulletMove = PlayerPrefs.GetFloat("speedBullet");
+        spawnBulletDelay = PlayerPrefs.GetFloat("spawnBullet");
+    }
+
+    public void StatsCheck()
+    {
+        if (speedBulletMove <= 0){ 
+            speedBulletMove = 1;
+            PlayerPrefs.SetFloat("speedBullet", 1);
+        }
+        if (spawnBulletDelay <= 0) { 
+            spawnBulletDelay = 2;
+            PlayerPrefs.SetFloat("spawnBullet", 2);
+        }
     }
 
 }
