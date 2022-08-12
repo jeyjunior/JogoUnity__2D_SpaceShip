@@ -7,8 +7,8 @@ public class EnemyController : MonoBehaviour
 
     public GameObject[] enemy = new GameObject[1];
 
-    public float delaySpawn = 3;
-    public int spawnedQuantity = 5;
+    public float delaySpawn = 10;
+    public int spawnedQuantity = 2;
 
 
     void Start()

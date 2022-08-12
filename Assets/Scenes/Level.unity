@@ -1085,8 +1085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
   - {fileID: 5340139303500190011, guid: 9221dd0264149dd49abaa51504977fd0, type: 3}
-  delaySpawn: 3
-  spawnedQuantity: 3
+  delaySpawn: 5
+  spawnedQuantity: 2
 --- !u!4 &1067539844
 Transform:
   m_ObjectHideFlags: 0
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   lifeBar: {fileID: 1063044976}
   maxLife_: 0
   remainingLife: 0
-  dmgValueReceived: 10
+  dmgValueReceived: 
   bullet: {fileID: 286813502008476472, guid: 868a66da01f3f6e4e86ac4d3fb3896bd, type: 3}
   spawnPoint: {fileID: 917908588}
 --- !u!50 &1735427874

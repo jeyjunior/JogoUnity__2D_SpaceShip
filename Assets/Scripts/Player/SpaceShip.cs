@@ -15,7 +15,6 @@ public class SpaceShip : MonoBehaviour
     //SpaceShip lifeStats
     public Slider lifeBar;
     public int maxLife_, remainingLife;
-    public int dmgValueReceived;
 
     //Bullet Control
     public GameObject bullet;
@@ -51,25 +50,11 @@ public class SpaceShip : MonoBehaviour
         lifeBar.value = remainingLife;
     }
 
-    public void DmgReceive()
+    public void DmgReceive(int dmgReceive)
     {
-        remainingLife -= dmgValueReceived;
+        remainingLife -= dmgReceive;
     }
 
-
-
-   
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        InvokeRepeating("DmgReceive", 0, 0.3f);
-        print("DmgReceive");
-    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {

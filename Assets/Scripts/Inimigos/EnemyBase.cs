@@ -14,7 +14,7 @@ public class EnemyBase : MonoBehaviour
     private void Awake()
     {
         maxLife = 10;
-        poder = 3;
+        poder = Mathf.RoundToInt(Random.Range(1, 10));
     }
 
     
@@ -40,7 +40,22 @@ public class EnemyBase : MonoBehaviour
             txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().crit = bulletStatus.critic;
         }
 
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            InvokeRepeating("hitPlayer", 0, 0.3f);
+        }
+
         if (collision.gameObject.name == "EndEnemies") Destroy(this.gameObject);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        CancelInvoke("hitPlayer");
+    }
+
+    void hitPlayer()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceShip>().DmgReceive(poder);
     }
 
     void LifeControl()
