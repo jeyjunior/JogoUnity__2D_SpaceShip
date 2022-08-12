@@ -5,13 +5,16 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     public int maxLife;
+    public int poder;
     float speedMove = 1;
 
     public GameObject txtDmgReceive;
 
+
     private void Awake()
     {
         maxLife = 10;
+        poder = 3;
     }
 
     

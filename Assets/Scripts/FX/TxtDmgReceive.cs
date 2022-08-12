@@ -31,6 +31,6 @@ public class TxtDmgReceive : MonoBehaviour
     
     void Update()
     {
-        transform.Translate(Vector2.up * Random.Range(0.5f,2) * Time.deltaTime);
+        transform.Translate(Vector2.up * Random.Range(0.5f,1.5f) * Time.deltaTime);
     }
 }

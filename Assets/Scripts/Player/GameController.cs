@@ -13,6 +13,10 @@ public class GameController : MonoBehaviour
     public int power = 3;
     public int crit = 50;
 
+    public int maxLife = 300;
+
+
+
 
     void Start()
     {
