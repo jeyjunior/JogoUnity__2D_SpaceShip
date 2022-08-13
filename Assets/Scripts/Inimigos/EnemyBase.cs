@@ -10,7 +10,7 @@ public class EnemyBase : MonoBehaviour
     public int exp;
 
     public GameObject txtDmgReceive;
-
+    public GameController gameController;
 
     private void Awake()
     {
@@ -18,6 +18,7 @@ public class EnemyBase : MonoBehaviour
         poder = Mathf.RoundToInt(Random.Range(1, 10));
         exp = Mathf.RoundToInt(Random.Range(5, 10));
 
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
 
     
@@ -45,6 +46,7 @@ public class EnemyBase : MonoBehaviour
             txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().crit = bulletStatus.critic;
         }
 
+        //Sempre que colidir com o player, aciona hitPlayer
         if (collision.gameObject.CompareTag("Player"))
         {
             InvokeRepeating("hitPlayer", 0, 0.3f);
@@ -55,29 +57,37 @@ public class EnemyBase : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Cancela o dano por tempo que o player irá sofrer
         CancelInvoke("hitPlayer");
     }
 
+
     void hitPlayer()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceShip>().DmgReceive(poder);
+        //hitPlayer aciona metodo DMGReceive que controla a perda de vida do player
+        //Controle é realizado no GameController
+        gameController.DmgReceive(poder);
     }
     #endregion
 
+
+    //Separar movimentação em outro script
     #region Movimentação
+    //Sistema de movimentação dos inimigos
     public void Move()
     {
        transform.Translate(Vector2.down * speedMove * Time.deltaTime);
     }
     #endregion
 
+    //Sistema de morte add no triggerEnd2D
     #region Death System
     //Death system and exp delivery to the player
     public void DeathSystem()
     {
         if (life <= 0)
         {
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().GainingExperience(exp);
+            gameController.GainingExperience(exp);
             Destroy(this.gameObject);
         }
     }

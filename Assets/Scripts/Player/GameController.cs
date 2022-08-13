@@ -9,11 +9,10 @@ public class GameController : MonoBehaviour
     //SpaceShip attributes
     public float speedBulletMove = 2;
     public float spawnBulletDelay = 2;
+
+    //DMG Control
     public int power = 3;
     public int crit = 50;
-
-    public int maxLife = 300;
-
 
     //Exp Control
     public int maxExp = 30, currentExp = 0;
@@ -21,10 +20,22 @@ public class GameController : MonoBehaviour
     public Slider expBarSlider;
     public int attributesPoints = 0;
 
+    //Life Control
+    public Slider lifeBar;
+    public int maxLife = 300, currentLife;
+
+
+
     void Start()
     {
+        //Exp 
         expBarSlider.maxValue = maxExp;
         expBarSlider.value = currentExp;
+
+        //Life
+        currentLife = maxLife;
+        lifeBar.maxValue = maxLife;
+        lifeBar.value = maxLife;
     }
 
 
@@ -32,11 +43,24 @@ public class GameController : MonoBehaviour
     {
         StatsCheck();
         ExperienceControl();
+        LifeBarControl();
     }
 
+    #region Life Control
+    void LifeBarControl()
+    {
+        lifeBar.value = currentLife;
+    }
+    #endregion
 
+    #region Take DMG from enemies
+    public void DmgReceive(int dmgReceive)
+    {
+        currentLife -= dmgReceive;
+    }
+    #endregion
 
-    #region Experience Control
+    #region Experience and Level Control
     void ExperienceControl()
     {
         if(currentExp >= maxExp)
@@ -44,8 +68,11 @@ public class GameController : MonoBehaviour
             currentExp -= maxExp;
             maxExp *= 2;
             lvlPlayer++;
-            attributesPoints += 3;
-            expBarSlider.maxValue = maxExp;
+            attributesPoints += 3; //pontos para usuario distribuir como quiser nos atributos
+            expBarSlider.maxValue = maxExp; //atualiza exp max
+            
+            maxLife += 10; //Ganha 10 de vida ganha lvl upado
+            lifeBar.maxValue = maxLife;
         }
 
         expBarSlider.value = currentExp;
@@ -56,7 +83,7 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    #region Saves
+    #region Saves ARRUMAR
     public void SaveStats()
     {
         PlayerPrefs.SetFloat("speedBullet", speedBulletMove);

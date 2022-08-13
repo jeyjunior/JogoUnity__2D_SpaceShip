@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SpaceShip : MonoBehaviour
 {
+    //SpaceShip só tem spawns e moves todo o controle de atributos é trabalhado diretamente no GC
+
     //GC
     public GameController gameController;
 
@@ -12,9 +14,6 @@ public class SpaceShip : MonoBehaviour
     public Slider valueMove;
     public Vector2 moveP;
 
-    //SpaceShip lifeStats
-    public Slider lifeBar;
-    public int maxLife_, remainingLife;
 
     //Bullet Control
     public GameObject bullet;
@@ -22,21 +21,16 @@ public class SpaceShip : MonoBehaviour
     float spawnBulletDelay_;
 
 
+    private void Awake()
+    {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        
+        //Move Control
+        valueMove = GameObject.Find("MoveSlider").GetComponent<Slider>();
+    }
 
     void Start()
     {
-        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-
-        //Move Control
-        valueMove = GameObject.Find("MoveSlider").GetComponent<Slider>();
-
-        //LifeBar Control
-        maxLife_ = gameController.maxLife;
-        remainingLife = maxLife_;
-        lifeBar = GetComponentInChildren<Slider>();
-        lifeBar.maxValue = maxLife_;
-
-
         //Bullets Control and Spawn bullets 
         spawnBulletDelay_ = gameController.spawnBulletDelay;
         InvokeRepeating("SpawnBullets", 0, spawnBulletDelay_);
@@ -45,22 +39,6 @@ public class SpaceShip : MonoBehaviour
     void Update()
     {
         SpaceShipMove(); 
-        LifeBarControl();
-    }
-
-    void LifeBarControl() {
-        lifeBar.value = remainingLife;
-    }
-
-    public void DmgReceive(int dmgReceive)
-    {
-        remainingLife -= dmgReceive;
-    }
-
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        CancelInvoke("DmgReceive");
     }
 
     #region SpaceShipMove

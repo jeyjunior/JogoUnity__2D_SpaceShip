@@ -1486,9 +1486,6 @@ MonoBehaviour:
   gameController: {fileID: 828967250}
   valueMove: {fileID: 0}
   moveP: {x: 0, y: 0}
-  lifeBar: {fileID: 1063044976}
-  maxLife_: 0
-  remainingLife: 0
   bullet: {fileID: 286813502008476472, guid: 868a66da01f3f6e4e86ac4d3fb3896bd, type: 3}
   spawnPoint: {fileID: 917908588}
 --- !u!50 &1735427874
@@ -1911,6 +1908,10 @@ PrefabInstance:
       propertyPath: power
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1187803285117144165, guid: e0674da21394f7741b4413fbe5831d0b, type: 3}
+      propertyPath: lifeBar
+      value: 
+      objectReference: {fileID: 1063044976}
     - target: {fileID: 1187803285117144165, guid: e0674da21394f7741b4413fbe5831d0b, type: 3}
       propertyPath: expBarSlider
       value: 
