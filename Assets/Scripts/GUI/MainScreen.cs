@@ -12,6 +12,7 @@ public class MainScreen : MonoBehaviour
 
     //SpaceShip attributes
     public float speedBulletMove, spawnBulletDelay;
+    int spawnBulletDelayCountUpgrade = 0;
 
     //DMG Control
     public int power, crit;
@@ -24,13 +25,14 @@ public class MainScreen : MonoBehaviour
 
     //Attributes Components
     public Text txtQtdAttributesPoints, txtPower, txtSpawnBulletDelay;
-
+    public Slider sliderPower, sliderSpawnBulletDelay;
 
     private void Start()
     {
         PanelsControl(true, false);
         FirstTime();
         LoadData();
+        SlidersMaxValue();
     }
 
     private void Update()
@@ -42,20 +44,29 @@ public class MainScreen : MonoBehaviour
     {
         txtQtdAttributesPoints.text = attributesPoints.ToString();
         txtPower.text = power.ToString();
-        txtSpawnBulletDelay.text = spawnBulletDelay.ToString();
+        txtSpawnBulletDelay.text = spawnBulletDelay.ToString("F2");
+
+        sliderPower.value = power;
+        sliderSpawnBulletDelay.value = spawnBulletDelayCountUpgrade;
+    }
+
+    void SlidersMaxValue()
+    {
+        sliderPower.maxValue = 300;
+        sliderSpawnBulletDelay.maxValue = 100; sliderSpawnBulletDelay.minValue = 0;
     }
     
     //Power Upgrade
     //Acada 1pt atributo add 3pt de power
     public void PowerUpgrade(bool value)
     {
-        if(value && attributesPoints > 0 && power < 303)
+        if(value && attributesPoints > 0 && power < 300)
         {
             power += 3;
             attributesPoints--;
         }
 
-        if (!value && power >= 6)
+        if (!value && power >= 3)
         {
             power -= 3;
             attributesPoints++;
@@ -71,12 +82,14 @@ public class MainScreen : MonoBehaviour
         {
             spawnBulletDelay -= 0.02f;
             attributesPoints--;
+            spawnBulletDelayCountUpgrade++;
         }
 
         if (!value && spawnBulletDelay <= 2.08f)
         {
             spawnBulletDelay += 0.02f;
             attributesPoints++;
+            spawnBulletDelayCountUpgrade--;
         }
 
     }
