@@ -4,26 +4,31 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public int maxLife;
+    public int life;
     public int poder;
     float speedMove = 1;
+    public int exp;
 
     public GameObject txtDmgReceive;
 
 
     private void Awake()
     {
-        maxLife = 10;
+        life = 10;
         poder = Mathf.RoundToInt(Random.Range(1, 10));
+        exp = Mathf.RoundToInt(Random.Range(5, 10));
+
     }
 
     
     private void Update()
     {
         Move();
-        LifeControl();
+        DeathSystem();
     }
 
+    
+    #region Receiving and Dealing Damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
@@ -32,7 +37,7 @@ public class EnemyBase : MonoBehaviour
             var bulletStatus = collision.gameObject.GetComponent<BulletBehaviors>();
 
 
-            maxLife -= bulletStatus.power;
+            life -= bulletStatus.power;
 
             //Spawn txt
             Instantiate(txtDmgReceive, transform.position, Quaternion.identity);
@@ -57,16 +62,24 @@ public class EnemyBase : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceShip>().DmgReceive(poder);
     }
-
-    void LifeControl()
-    {
-        if (maxLife <= 0) Destroy(this.gameObject);
-    }
+    #endregion
 
     #region Movimentação
     public void Move()
     {
        transform.Translate(Vector2.down * speedMove * Time.deltaTime);
+    }
+    #endregion
+
+    #region Death System
+    //Death system and exp delivery to the player
+    public void DeathSystem()
+    {
+        if (life <= 0)
+        {
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().GainingExperience(exp);
+            Destroy(this.gameObject);
+        }
     }
     #endregion
 }

@@ -2,34 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //SpaceShip atributos
+    //SpaceShip attributes
     public float speedBulletMove = 2;
     public float spawnBulletDelay = 2;
-
     public int power = 3;
     public int crit = 50;
 
     public int maxLife = 300;
 
 
-
+    //Exp Control
+    public int maxExp = 30, currentExp = 0;
+    public int lvlPlayer = 1;
+    public Slider expBarSlider;
+    public int attributesPoints = 0;
 
     void Start()
     {
-        LoadStats();
+        expBarSlider.maxValue = maxExp;
+        expBarSlider.value = currentExp;
     }
 
 
     void Update()
     {
         StatsCheck();
+        ExperienceControl();
     }
 
 
+
+    #region Experience Control
+    void ExperienceControl()
+    {
+        if(currentExp >= maxExp)
+        {
+            currentExp -= maxExp;
+            maxExp *= 2;
+            lvlPlayer++;
+            attributesPoints += 3;
+            expBarSlider.maxValue = maxExp;
+        }
+
+        expBarSlider.value = currentExp;
+    }
+
+    public void GainingExperience(int exp){
+        currentExp += exp;
+    }
+    #endregion
+
+    #region Saves
     public void SaveStats()
     {
         PlayerPrefs.SetFloat("speedBullet", speedBulletMove);
@@ -59,6 +86,6 @@ public class GameController : MonoBehaviour
             PlayerPrefs.SetInt("power", 3);
         }
     }
-
+    #endregion
 
 }

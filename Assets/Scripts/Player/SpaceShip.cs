@@ -21,6 +21,8 @@ public class SpaceShip : MonoBehaviour
     public Transform spawnPoint;
     float spawnBulletDelay_;
 
+
+
     void Start()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
