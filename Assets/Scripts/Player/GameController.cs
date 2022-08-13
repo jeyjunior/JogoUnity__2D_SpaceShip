@@ -7,35 +7,26 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     //SpaceShip attributes
-    public float speedBulletMove = 2;
-    public float spawnBulletDelay = 2;
+    public float speedBulletMove, spawnBulletDelay;
 
     //DMG Control
-    public int power = 3;
-    public int crit = 50;
+    public int power, crit;
 
     //Exp Control
-    public int maxExp = 30, currentExp = 0;
-    public int lvlPlayer = 1;
-    public Slider expBarSlider;
-    public int attributesPoints = 0;
+    public int maxExp, currentExp, lvlPlayer, attributesPoints;
 
     //Life Control
-    public Slider lifeBar;
-    public int maxLife = 300, currentLife;
+    public int maxLife, currentLife;
 
-
+    //SpaceShip
+    public SpaceShip spaceShip;
 
     void Start()
     {
-        //Exp 
-        expBarSlider.maxValue = maxExp;
-        expBarSlider.value = currentExp;
+        spaceShip = GameObject.FindWithTag("Player").GetComponent<SpaceShip>();
 
         //Life
         currentLife = maxLife;
-        lifeBar.maxValue = maxLife;
-        lifeBar.value = maxLife;
     }
 
 
@@ -49,7 +40,7 @@ public class GameController : MonoBehaviour
     #region Life Control
     void LifeBarControl()
     {
-        lifeBar.value = currentLife;
+        spaceShip.lifeBar.value = currentLife;
     }
     #endregion
 
@@ -69,13 +60,13 @@ public class GameController : MonoBehaviour
             maxExp *= 2;
             lvlPlayer++;
             attributesPoints += 3; //pontos para usuario distribuir como quiser nos atributos
-            expBarSlider.maxValue = maxExp; //atualiza exp max
+            spaceShip.expBarSlider.maxValue = maxExp; //atualiza exp max
             
             maxLife += 10; //Ganha 10 de vida ganha lvl upado
-            lifeBar.maxValue = maxLife;
+            spaceShip.lifeBar.maxValue = maxLife;
         }
 
-        expBarSlider.value = currentExp;
+        spaceShip.expBarSlider.value = currentExp;
     }
 
     public void GainingExperience(int exp){

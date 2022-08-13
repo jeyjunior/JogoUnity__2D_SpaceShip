@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1509288384911882143}
-  - component: {fileID: 1187803285117144165}
+  - component: {fileID: 3810462629867187248}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1187803285117144165
+--- !u!114 &3810462629867187248
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,4 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f613ddb34791454e9f61ee93347f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speedBulletMove: 2
+  spawnBulletDelay: 2.1
+  power: 3
+  crit: 50
+  maxExp: 30
+  currentExp: 0
+  lvlPlayer: 1
+  attributesPoints: 0
+  maxLife: 300
+  currentLife: 0

@@ -18,27 +18,34 @@ public class SpaceShip : MonoBehaviour
     //Bullet Control
     public GameObject bullet;
     public Transform spawnPoint;
-    float spawnBulletDelay_;
 
+    //life and Exp Bar
+    public Slider lifeBar;
+    public Slider expBarSlider;
 
-    private void Awake()
-    {
-        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
-        
-        //Move Control
-        valueMove = GameObject.Find("MoveSlider").GetComponent<Slider>();
-    }
 
     void Start()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+
+        //Move Control
+        valueMove = GameObject.Find("MoveSlider").GetComponent<Slider>();
+
+        //LifeBar
+        lifeBar.maxValue = gameController.maxLife;
+        lifeBar.value = gameController.maxLife;
+
+        //ExpBar
+        expBarSlider.maxValue = gameController.maxExp;
+        expBarSlider.value = gameController.currentExp;
+
         //Bullets Control and Spawn bullets 
-        spawnBulletDelay_ = gameController.spawnBulletDelay;
-        InvokeRepeating("SpawnBullets", 0, spawnBulletDelay_);
+        InvokeRepeating("SpawnBullets", 0, gameController.spawnBulletDelay);
     }
 
     void Update()
     {
-        SpaceShipMove(); 
+        SpaceShipMove();
     }
 
     #region SpaceShipMove
