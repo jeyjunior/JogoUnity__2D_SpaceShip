@@ -51,7 +51,7 @@ public class SpaceShip : MonoBehaviour
     #region SpaceShipMove
     public void SpaceShipMove()
     {
-        moveP = new Vector2(valueMove.value * 3, -3);
+        moveP = new Vector2(valueMove.value * 2.3f, -3);
         transform.position = moveP;
     }
     #endregion

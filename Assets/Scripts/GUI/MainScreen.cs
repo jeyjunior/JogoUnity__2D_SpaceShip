@@ -9,7 +9,7 @@ public class MainScreen : MonoBehaviour
     public GameObject mainPanel, statusPanel;
 
     //SpaceShip attributes
-    public float speedBulletMove = 2, spawnBulletDelay = 2.1f;
+    public float speedBulletMove = 5, spawnBulletDelay = 2.1f;
     int spawnBulletDelayCountUpgrade = 0;
 
     //DMG Control
@@ -22,8 +22,8 @@ public class MainScreen : MonoBehaviour
     public int maxLife = 300;
 
     //Attributes Components
-    public Text txtQtdAttributesPoints, txtPower, txtSpawnBulletDelay;
-    public Slider sliderPower, sliderSpawnBulletDelay;
+    public Text txtQtdAttributesPoints, txtStatsPower, txtStatsCritical, txtStatsLife, txtStatsSpawnBullet, txtStatsSpeedBullet;
+    public Slider sliderPower, sliderCritical, sliderLife, sliderSpawnBullet, sliderSpeedBullet;
 
     private void Start()
     {
@@ -47,30 +47,42 @@ public class MainScreen : MonoBehaviour
     void UpgradeAttributes()
     {
         txtQtdAttributesPoints.text = attributesPoints.ToString();
-        txtPower.text = power.ToString();
-        txtSpawnBulletDelay.text = spawnBulletDelay.ToString("F2");
 
+        //Text attributes
+        txtStatsPower.text = power.ToString();
+        txtStatsCritical.text = crit.ToString();
+        txtStatsLife.text = maxLife.ToString();
+        txtStatsSpawnBullet.text = spawnBulletDelay.ToString("F2");
+        txtStatsSpeedBullet.text = speedBulletMove.ToString("F2"); //CONFIRMAR VALORES
+
+        //Slider attributes
         sliderPower.value = power;
-        sliderSpawnBulletDelay.value = spawnBulletDelayCountUpgrade;
+        sliderCritical.value = crit;
+        sliderLife.value = maxLife;
+        sliderSpawnBullet.value = spawnBulletDelayCountUpgrade;
+        sliderSpeedBullet.value = speedBulletMove; //CONFIRMAR VALORES
     }
 
     void SlidersMaxValue()
     {
         sliderPower.maxValue = 300;
-        sliderSpawnBulletDelay.maxValue = 100; sliderSpawnBulletDelay.minValue = 0;
+        sliderCritical.maxValue = 100;
+        sliderLife.maxValue = 3000;
+        sliderSpawnBullet.maxValue = 100; sliderSpawnBullet.minValue = 0;
+        sliderSpeedBullet.maxValue = 25;
     }
     
     //Power Upgrade
     //Acada 1pt atributo add 3pt de power
-    public void PowerUpgrade(bool value)
+    public void UpgradePower(bool value)
     {
-        if(value && attributesPoints > 0 && power < 300)
+        if(value && attributesPoints > 0 && power <= 300)
         {
             power += 3;
             attributesPoints--;
         }
 
-        if (!value && power >= 3)
+        if (!value && power >= 6)
         {
             power -= 3;
             attributesPoints++;
@@ -78,9 +90,44 @@ public class MainScreen : MonoBehaviour
 
     }
 
+    //Critical Upgrade
+    //Acada 1pt atributo add 1pt de critical
+    public void UpgradeCritical(bool value)
+    {
+        if (value && attributesPoints > 0 && crit < 100)
+        {
+            crit += 1;
+            attributesPoints--;
+        }
+
+        if (!value && crit >= 1)
+        {
+            crit -= 1;
+            attributesPoints++;
+        }
+    }
+
+    //Life Upgrade
+    //Acada 1pt atributo add 27pt de vida
+    public void UpgradeLife(bool value)
+    {
+        if (value && attributesPoints > 0 && maxLife <= 2973)
+        {
+            maxLife += 27;
+            attributesPoints--;
+        }
+
+        if (!value && maxLife >= 327)
+        {
+            maxLife -= 27;
+            attributesPoints++;
+        }
+    }
+
+
     //SpawnBulletDelay Upgrade
     //Acada 5pts atributo diminui 0.1f de SpawnBulletDelay (1pt = 0.02f)
-    public void SpawnBulletDelayUpgrade(bool value)
+    public void UpgradeSpawnBullet(bool value)
     {
         if (value && attributesPoints > 0 && spawnBulletDelay > 0.12f)
         {
@@ -95,7 +142,23 @@ public class MainScreen : MonoBehaviour
             attributesPoints++;
             spawnBulletDelayCountUpgrade--;
         }
+    }
 
+    //SpeedBullet Upgrade
+    //Acada 1pt atributo add 0,2pt de Speed
+    public void UpgradeSpeedBullet(bool value)
+    {
+        if (value && attributesPoints > 0 && speedBulletMove <= 25)
+        {
+            speedBulletMove += 0.2f;
+            attributesPoints--;
+        }
+
+        if (!value && speedBulletMove >= 5.02f)
+        {
+            speedBulletMove -= 0.2f;
+            attributesPoints++;
+        }
     }
 
     #endregion
