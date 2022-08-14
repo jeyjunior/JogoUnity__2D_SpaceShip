@@ -21,26 +21,42 @@ public class GameController : MonoBehaviour
     //SpaceShip
     public SpaceShip spaceShip;
 
+    //Death
+    public GameObject deathPanel;
+    public bool dead;
+
     void Start()
     {
         spaceShip = GameObject.FindWithTag("Player").GetComponent<SpaceShip>();
 
         //Life
         currentLife = maxLife;
+        LoadData();
+
+        //DeathPanel
+        deathPanel.SetActive(false);
     }
 
 
     void Update()
     {
-        StatsCheck();
         ExperienceControl();
         LifeBarControl();
     }
 
-    #region Life Control
+    #region Life and Death Control
     void LifeBarControl()
     {
         spaceShip.lifeBar.value = currentLife;
+        if(currentLife <= 0)
+        {
+            dead = true;
+            deathPanel.SetActive(true);
+        }
+        else
+        {
+            dead = false;
+        }
     }
     #endregion
 
@@ -74,36 +90,52 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    #region Saves ARRUMAR
-    public void SaveStats()
+    #region Load and Save
+    public void SaveData()
     {
-        PlayerPrefs.SetFloat("speedBullet", speedBulletMove);
-        PlayerPrefs.SetFloat("spawnBullet", spawnBulletDelay);
+        PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
+        PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
+
         PlayerPrefs.SetInt("power", power);
+        PlayerPrefs.SetInt("crit", crit);
+
+        PlayerPrefs.SetInt("maxExp", maxExp);
+        PlayerPrefs.SetInt("currentExp", currentExp);
+        PlayerPrefs.SetInt("lvlPlayer", lvlPlayer);
+        PlayerPrefs.SetInt("attributesPoints", attributesPoints);
+
+        PlayerPrefs.SetInt("maxLife", maxLife);
     }
 
-    public void LoadStats()
+    public void LoadData()
     {
-        speedBulletMove = PlayerPrefs.GetFloat("speedBullet");
-        spawnBulletDelay = PlayerPrefs.GetFloat("spawnBullet");
-        power = PlayerPrefs.GetInt("Power");
-    }
+        //Load quando jogo começar
+        speedBulletMove = PlayerPrefs.GetFloat("speedBulletMove");
+        spawnBulletDelay = PlayerPrefs.GetFloat("spawnBulletDelay");
 
-    public void StatsCheck()
-    {
-        if (speedBulletMove <= 0){ 
-            speedBulletMove = 1;
-            PlayerPrefs.SetFloat("speedBullet", 1);
-        }
-        if (spawnBulletDelay <= 0) { 
-            spawnBulletDelay = 2;
-            PlayerPrefs.SetFloat("spawnBullet", 2);
-        }
-        if (power <= 0) {
-            power = 3;
-            PlayerPrefs.SetInt("power", 3);
-        }
+        power = PlayerPrefs.GetInt("power");
+        crit = PlayerPrefs.GetInt("crit");
+
+        maxExp = PlayerPrefs.GetInt("maxExp");
+        currentExp = PlayerPrefs.GetInt("currentExp");
+        lvlPlayer = PlayerPrefs.GetInt("lvlPlayer");
+        attributesPoints = PlayerPrefs.GetInt("attributesPoints");
+
+        maxLife = PlayerPrefs.GetInt("maxLife");
     }
     #endregion
 
+    #region Btn BackToMain and RestartGame
+    public void BackToMain()
+    {
+        SaveData();
+        SceneManager.LoadScene(0);
+    }
+
+    public void RestartGame()
+    {
+        SaveData();
+        SceneManager.LoadScene(1);
+    }
+    #endregion
 }

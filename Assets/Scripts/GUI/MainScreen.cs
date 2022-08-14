@@ -2,26 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainScreen : MonoBehaviour
 {
     public GameObject mainPanel, statusPanel;
 
-    //FirstTime
-    int firstTime = 0;
-
     //SpaceShip attributes
-    public float speedBulletMove, spawnBulletDelay;
+    public float speedBulletMove = 2, spawnBulletDelay = 2.1f;
     int spawnBulletDelayCountUpgrade = 0;
 
     //DMG Control
-    public int power, crit;
+    public int power = 3, crit = 0;
 
     //Exp Control
-    public int maxExp, currentExp, lvlPlayer, attributesPoints;
+    public int maxExp = 30, currentExp = 0, lvlPlayer = 1, attributesPoints = 10;
 
     //Life Control
-    public int maxLife;
+    public int maxLife = 300;
 
     //Attributes Components
     public Text txtQtdAttributesPoints, txtPower, txtSpawnBulletDelay;
@@ -30,9 +28,8 @@ public class MainScreen : MonoBehaviour
     private void Start()
     {
         PanelsControl(true, false);
-        FirstTime();
-        LoadData();
         SlidersMaxValue();
+        FirstTime();   
     }
 
     private void Update()
@@ -40,6 +37,13 @@ public class MainScreen : MonoBehaviour
         UpgradeAttributes();
     }
 
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    #region Upgrade Attributes
     void UpgradeAttributes()
     {
         txtQtdAttributesPoints.text = attributesPoints.ToString();
@@ -94,36 +98,23 @@ public class MainScreen : MonoBehaviour
 
     }
 
-
-
-
-
-
-
-
-    void FirstTime()
-    {
-        if (firstTime == 0)
-        {
-            speedBulletMove = 2; spawnBulletDelay = 2.1f;
-            power = 3; crit = 0;
-            maxExp = 30; currentExp = 0; lvlPlayer = 1; attributesPoints = 10;
-            maxLife = 300;
-            firstTime = 1;
-            PlayerPrefs.SetInt("firstTime", firstTime);
-        }
-    }
+    #endregion
 
     #region Save and Load Data
     public void LoadData()
     {
-        //Load maxExp; currentExp; lvlPlayer; attributesPoints, firstTime;
-        PlayerPrefs.GetInt("firstTime");
+        speedBulletMove = PlayerPrefs.GetFloat("speedBulletMove");
+        spawnBulletDelay = PlayerPrefs.GetFloat("spawnBulletDelay");
 
-        PlayerPrefs.GetInt("maxExp");
-        PlayerPrefs.GetInt("currentExp");
-        PlayerPrefs.GetInt("lvlPlayer");
-        PlayerPrefs.GetInt("attributesPoints");
+        power = PlayerPrefs.GetInt("power");
+        crit = PlayerPrefs.GetInt("crit");
+
+        maxExp = PlayerPrefs.GetInt("maxExp");
+        currentExp = PlayerPrefs.GetInt("currentExp");
+        lvlPlayer = PlayerPrefs.GetInt("lvlPlayer");
+        attributesPoints = PlayerPrefs.GetInt("attributesPoints");
+
+        maxLife = PlayerPrefs.GetInt("maxLife");
     }
 
     public void SaveData()
@@ -140,6 +131,13 @@ public class MainScreen : MonoBehaviour
         PlayerPrefs.SetInt("attributesPoints", attributesPoints);
 
         PlayerPrefs.SetInt("maxLife", maxLife);
+    }
+
+    public void FirstTime() {
+        if (PlayerPrefs.HasKey("power") || PlayerPrefs.HasKey("maxLife"))
+        {
+            LoadData();
+        };
     }
     #endregion
 
@@ -161,5 +159,9 @@ public class MainScreen : MonoBehaviour
         statusPanel.SetActive(valueB);
     }
 
+    public void DeleteSave()
+    {
+        PlayerPrefs.DeleteAll();
+    }
     #endregion
 }

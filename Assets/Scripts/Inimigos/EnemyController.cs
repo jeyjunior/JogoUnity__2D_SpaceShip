@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
 
     public GameObject[] enemy = new GameObject[1];
+    public GameController gameController;
 
     public float delaySpawn = 10;
     public int spawnedQuantity = 2;
@@ -13,8 +14,23 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        //gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         InvokeRepeating("SlimeSpawn", 0, delaySpawn);
     }
+
+    private void Update()
+    {
+        //CancelSpawn();
+    }
+
+    /*public void CancelSpawn()
+    {
+        if (gameController.dead)
+        {
+            CancelInvoke("SlimeSpawn");
+        }
+    }*/
+
 
     private void SlimeSpawn()
     {
