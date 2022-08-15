@@ -13,11 +13,9 @@ public class BulletBehaviors : MonoBehaviour
     GameController gc;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         gc = GameObject.Find("GameController").GetComponent<GameController>();
-
-
 
         //Calculo de critico
         speed = gc.speedBulletMove;

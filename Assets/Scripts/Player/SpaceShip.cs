@@ -24,7 +24,7 @@ public class SpaceShip : MonoBehaviour
     public Slider expBarSlider;
 
 
-    void Start()
+    void Awake()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
 

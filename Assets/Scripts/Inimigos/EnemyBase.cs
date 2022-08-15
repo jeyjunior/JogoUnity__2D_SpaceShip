@@ -1,30 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour
 {
+    [Space(5)]
+    [Header("Attributes Base")]
     public int life;
     public int poder;
-    float speedMove = 1;
+    public float speedMove = 1;
     public int exp;
+    public int level;
 
-    public GameObject txtDmgReceive;
+    [Space(5)]
+    [Header("GameObjects")]
     public GameController gameController;
+    public Slider lifeBar;
+
+    private void AttributesValue(int valueMin, int valueMax)
+    {
+        //Attribute Value
+        life = Mathf.RoundToInt(Random.Range(valueMin, valueMax)); ;
+        poder = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
+        exp = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
+
+        speedMove = Random.Range(0.2f, 1);
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.1f, 1), 0, 0);
+    }
+
+
+
 
     private void Awake()
     {
-        life = 10;
-        poder = Mathf.RoundToInt(Random.Range(1, 10));
-        exp = Mathf.RoundToInt(Random.Range(5, 10));
-
+        AttributesValue(1, 20);
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        lifeBar.maxValue = life;
+        lifeBar.value = life;
     }
 
     
     private void Update()
     {
-        Move();
         DeathSystem();
     }
 
@@ -39,11 +58,7 @@ public class EnemyBase : MonoBehaviour
 
 
             life -= bulletStatus.power;
-
-            //Spawn txt
-            Instantiate(txtDmgReceive, transform.position, Quaternion.identity);
-            txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().dmgValue = bulletStatus.power;
-            txtDmgReceive.gameObject.GetComponent<TxtDmgReceive>().crit = bulletStatus.critic;
+            lifeBar.value = life;
         }
 
         //Sempre que colidir com o player, aciona hitPlayer
@@ -70,17 +85,6 @@ public class EnemyBase : MonoBehaviour
     }
     #endregion
 
-
-    //Separar movimentação em outro script
-    #region Movimentação
-    //Sistema de movimentação dos inimigos
-    public void Move()
-    {
-       transform.Translate(Vector2.down * speedMove * Time.deltaTime);
-    }
-    #endregion
-
-    //Sistema de morte add no triggerEnd2D
     #region Death System
     //Death system and exp delivery to the player
     public void DeathSystem()

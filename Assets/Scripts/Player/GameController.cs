@@ -79,6 +79,7 @@ public class GameController : MonoBehaviour
             spaceShip.expBarSlider.maxValue = maxExp; //atualiza exp max
             
             maxLife += 10; //Ganha 10 de vida ganha lvl upado
+            currentLife = maxLife;
             spaceShip.lifeBar.maxValue = maxLife;
         }
 

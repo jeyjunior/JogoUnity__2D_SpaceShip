@@ -10,6 +10,7 @@ public class MainScreen : MonoBehaviour
     [Header("Panels GameObject")]
     public GameObject mainPanel;
     public GameObject statusPanel;
+    public GameObject wavesPanel;
 
     #region SpaceShip var attributes
     [Space(5)]
@@ -55,7 +56,7 @@ public class MainScreen : MonoBehaviour
 
     private void Start()
     {
-        PanelsControl(true, false);
+        PanelsControl(true, false, false);
         SlidersMaxValue();
         FirstTime();   
     }
@@ -341,18 +342,24 @@ public class MainScreen : MonoBehaviour
     #region Btns MainPanel and StatusPanel
     public void MainPanel()
     {
-        PanelsControl(true, false);
+        PanelsControl(true, false, false);
     }
     public void StatusPanel()
     {
-        PanelsControl(false, true);
+        PanelsControl(false, true, false);
     }
 
-    /// <summary>  ValueA = Ativa/Desativa panel main,  ValueB = Ativa/Desativa panel Atributos </summary>
-    public void PanelsControl(bool valueA, bool valueB)
+    public void WavesPanel()
+    {
+        PanelsControl(false, false, true);
+    }
+
+    /// <summary>  true = ativada, false = desativada  </summary>
+    public void PanelsControl(bool valueA, bool valueB, bool valueC)
     {
         mainPanel.SetActive(valueA);
         statusPanel.SetActive(valueB);
+        wavesPanel.SetActive(valueC);
     }
     public void DeleteSave()
     {
