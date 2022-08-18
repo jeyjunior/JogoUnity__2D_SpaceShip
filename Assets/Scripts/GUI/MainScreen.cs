@@ -339,7 +339,7 @@ public class MainScreen : MonoBehaviour
     }
     #endregion
 
-    #region Btns MainPanel and StatusPanel
+    #region Btns MainPanel, StatusPanel and WavesPanel
     public void MainPanel()
     {
         PanelsControl(true, false, false);

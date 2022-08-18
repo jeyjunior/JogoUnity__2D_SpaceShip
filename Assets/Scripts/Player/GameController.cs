@@ -1,32 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    //SpaceShip attributes
-    public float speedBulletMove, spawnBulletDelay;
+    [Space(5)]
+    [Header("Attributes Base")]
+    public int power;
+    public int crit;
+    public int maxLife;
+    public int currentLife;
+    public float spawnBulletDelay;
+    public float speedBulletMove;
 
-    //DMG Control
-    public int power, crit;
+    [Space(5)]
+    [Header("Exp and Lvl Control")]
+    public int maxExp;
+    public int currentExp;
+    public int lvlPlayer;
+    public int attributesPoints;
 
-    //Exp Control
-    public int maxExp, currentExp, lvlPlayer, attributesPoints;
 
-    //Life Control
-    public int maxLife, currentLife;
-
-    //SpaceShip
+    [Space(5)]
+    [Header("SpaceShip")]
     public SpaceShip spaceShip;
 
-    //Death
+    [Space(5)]
+    [Header("Death")]
     public GameObject deathPanel;
     public bool dead;
 
     void Start()
     {
+        Time.timeScale = 1;
+
         spaceShip = GameObject.FindWithTag("Player").GetComponent<SpaceShip>();
 
         //Life
@@ -52,6 +59,8 @@ public class GameController : MonoBehaviour
         {
             dead = true;
             deathPanel.SetActive(true);
+            SaveData();
+            Time.timeScale = 0;
         }
         else
         {
@@ -63,7 +72,7 @@ public class GameController : MonoBehaviour
     #region Take DMG from enemies
     public void DmgReceive(int dmgReceive)
     {
-        currentLife -= dmgReceive;
+       currentLife -= dmgReceive;
     }
     #endregion
 
@@ -78,7 +87,6 @@ public class GameController : MonoBehaviour
             attributesPoints += 3; //pontos para usuario distribuir como quiser nos atributos
             spaceShip.expBarSlider.maxValue = maxExp; //atualiza exp max
             
-            maxLife += 10; //Ganha 10 de vida ganha lvl upado
             currentLife = maxLife;
             spaceShip.lifeBar.maxValue = maxLife;
         }
@@ -94,18 +102,18 @@ public class GameController : MonoBehaviour
     #region Load and Save
     public void SaveData()
     {
-        PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
-        PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
+            PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
+            PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
 
-        PlayerPrefs.SetInt("power", power);
-        PlayerPrefs.SetInt("crit", crit);
+            PlayerPrefs.SetInt("power", power);
+            PlayerPrefs.SetInt("crit", crit);
 
-        PlayerPrefs.SetInt("maxExp", maxExp);
-        PlayerPrefs.SetInt("currentExp", currentExp);
-        PlayerPrefs.SetInt("lvlPlayer", lvlPlayer);
-        PlayerPrefs.SetInt("attributesPoints", attributesPoints);
+            PlayerPrefs.SetInt("maxExp", maxExp);
+            PlayerPrefs.SetInt("currentExp", currentExp);
+            PlayerPrefs.SetInt("lvlPlayer", lvlPlayer);
+            PlayerPrefs.SetInt("attributesPoints", attributesPoints);
 
-        PlayerPrefs.SetInt("maxLife", maxLife);
+            PlayerPrefs.SetInt("maxLife", maxLife);
     }
 
     public void LoadData()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +13,8 @@ public class EnemyBase : MonoBehaviour
 
     [Space(5)]
     [Header("GameObjects")]
-    public GameController gameController;
+    GameController gameController;
+    EnemyController enemyController;
     public Slider lifeBar;
 
     private void AttributesValue(int valueMin, int valueMax)
@@ -25,49 +24,57 @@ public class EnemyBase : MonoBehaviour
         poder = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
         exp = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
 
-        speedMove = Random.Range(0.2f, 1);
+        SpeedMove(0.1f, 0.8f);
 
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.1f, 1), 0, 0);
     }
 
 
+    public void SpeedMove(float min, float max) => speedMove = Random.Range(min, max);
 
 
     private void Awake()
     {
         AttributesValue(1, 20);
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        enemyController = GameObject.FindGameObjectWithTag("EnemyController").GetComponent<EnemyController>();
+
         lifeBar.maxValue = life;
         lifeBar.value = life;
     }
-
-    
-    private void Update()
-    {
-        DeathSystem();
-    }
-
-    
+ 
     #region Receiving and Dealing Damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        switch (collision.gameObject.tag)
         {
-            Destroy(collision.gameObject);
-            var bulletStatus = collision.gameObject.GetComponent<BulletBehaviors>();
+            case "Bullet":
+                Destroy(collision.gameObject);
+                var bulletStatus = collision.gameObject.GetComponent<BulletBehaviors>();
 
+                life -= bulletStatus.power;
+                lifeBar.value = life;
 
-            life -= bulletStatus.power;
-            lifeBar.value = life;
+                if (life <= 0)
+                {
+                    DeathSystem(true);
+                }
+
+                gameController.SaveData();
+                break;
+
+            case "Player":
+                InvokeRepeating("hitPlayer", 0, 0.3f);
+                break;
+
+            case "EndEnemies":
+                DeathSystem(false);
+                break;
+            case "SwitchDirToDown":
+                this.gameObject.GetComponent<EnemyMove>().direction = false;
+                break;
         }
 
-        //Sempre que colidir com o player, aciona hitPlayer
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            InvokeRepeating("hitPlayer", 0, 0.3f);
-        }
-
-        if (collision.gameObject.name == "EndEnemies") Destroy(this.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -87,13 +94,14 @@ public class EnemyBase : MonoBehaviour
 
     #region Death System
     //Death system and exp delivery to the player
-    public void DeathSystem()
+    public void DeathSystem(bool drops)
     {
-        if (life <= 0)
+        if (drops)
         {
             gameController.GainingExperience(exp);
-            Destroy(this.gameObject);
         }
+        enemyController.spawned--;
+        Destroy(this.gameObject);
     }
     #endregion
 }

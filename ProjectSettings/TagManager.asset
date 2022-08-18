@@ -6,6 +6,10 @@ TagManager:
   tags:
   - LevelCanva
   - Bullet
+  - EnemyController
+  - EndEnemies
+  - SwitchDir
+  - SwitchDirToDown
   layers:
   - Default
   - TransparentFX

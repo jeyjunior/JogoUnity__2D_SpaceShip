@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
     [Space(5)]
     [Header("Control Spawns")]
-    float delaySpawn = 5;
-    int spawnedQuantity = 2;
-
+    [SerializeField]
+    int maxSpawn = 20;
+    public int spawned=0;
 
 
     [Space(5)]
@@ -19,25 +17,30 @@ public class EnemyController : MonoBehaviour
     [Header("GameObjects")]
     public GameController gameController;
 
+    public float timeCount = 0;
+
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-        InvokeRepeating("SlimeSpawn", 0, delaySpawn);
     }
 
     private void Update()
     {
-
+        SlimeSpawn();
     }
 
     private void SlimeSpawn()
     {
-        for(int i = 0; i < spawnedQuantity; i++)
+        if(spawned < maxSpawn)
         {
-            var position = new Vector2(Random.Range(-2.5f, 2.5f), Random.Range(5, 6));
+            
+            Vector2 position = new Vector2(Random.Range(-2f, 2f), 6);
             Instantiate(enemy[0], position, Quaternion.identity);
-            spawnedQuantity = Mathf.RoundToInt(Random.Range(3, 10));
+            //spawnedQuantity = Mathf.RoundToInt(Random.Range(3, 10));
+            spawned++;
+            //await Task.Delay(1000);
         }
+
     }
 
 }
