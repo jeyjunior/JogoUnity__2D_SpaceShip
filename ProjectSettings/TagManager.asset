@@ -8,8 +8,8 @@ TagManager:
   - Bullet
   - EnemyController
   - EndEnemies
-  - SwitchDir
   - SwitchDirToDown
+  - SwitchDirToUp
   layers:
   - Default
   - TransparentFX

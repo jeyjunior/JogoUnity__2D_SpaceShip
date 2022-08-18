@@ -71,7 +71,10 @@ public class EnemyBase : MonoBehaviour
                 DeathSystem(false);
                 break;
             case "SwitchDirToDown":
-                this.gameObject.GetComponent<EnemyMove>().direction = false;
+                this.gameObject.GetComponent<EnemyMove>().DirControl(false);
+                break;
+            case "SwitchDirToUp":
+                this.gameObject.GetComponent<EnemyMove>().DirControl(true);
                 break;
         }
 

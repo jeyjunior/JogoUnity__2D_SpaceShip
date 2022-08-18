@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
 
     //move to Down  = false; moveto up = true
 
-    public bool direction = false;
+    bool direction = false;
     [SerializeField]
     int amountSwitchDir = 5;
     [SerializeField]
@@ -15,15 +15,13 @@ public class EnemyMove : MonoBehaviour
     private void Start()
     {
         amountSwitchDir = (int)Random.Range(5, 10);
-        DirectionControl();
     }
 
     void Update()
     {
         Move();
+        //DirectionControl();
     }
-
-
 
     public void Move()
     {
@@ -37,19 +35,15 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    void DirectionControl()
-    {
-        if(dirSwitchCount < amountSwitchDir) {
-            for(int i = dirSwitchCount; i < amountSwitchDir; i++)
-            {
-                Invoke("DirSwitch", 1);
-            }
-        }
-    }
 
-    void DirSwitch() {
-        dirSwitchCount++;
-        direction = !direction;
+
+    public void DirControl(bool value)
+    {
+        if(dirSwitchCount < amountSwitchDir)
+        {
+            direction = value;
+            dirSwitchCount++;
+        }
     }
 
 
