@@ -3,21 +3,18 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Space(5)]
+    [Header("GameObjects")]
+    public GameController gameController;
+
+    [Space(5)]
     [Header("Control Spawns")]
     [SerializeField]
     int maxSpawn = 20;
     public int spawned=0;
 
-
     [Space(5)]
     [Header("Enemys list")]
     public GameObject[] enemy = new GameObject[1];
-
-    [Space(5)]
-    [Header("GameObjects")]
-    public GameController gameController;
-
-    public float timeCount = 0;
 
     void Start()
     {

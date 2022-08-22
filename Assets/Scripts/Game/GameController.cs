@@ -30,6 +30,11 @@ public class GameController : MonoBehaviour
     public GameObject deathPanel;
     public bool dead;
 
+    [Space(5)]
+    [Header("TimeControl")]
+    public Text txtTimeCount;
+    public int timeCount = 0;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -146,5 +151,10 @@ public class GameController : MonoBehaviour
         SaveData();
         SceneManager.LoadScene(1);
     }
+    #endregion
+
+    #region Win
+
+
     #endregion
 }

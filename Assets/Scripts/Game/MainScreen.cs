@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class MainScreen : MonoBehaviour
 {
+    #region SpaceShip var attributes and objects
     [Space(5)]
     [Header("Panels GameObject")]
     public GameObject mainPanel;
     public GameObject statusPanel;
     public GameObject wavesPanel;
 
-    #region SpaceShip var attributes
     [Space(5)]
     [Header("Attributes Base")]
     public int power = 3;
@@ -52,13 +53,24 @@ public class MainScreen : MonoBehaviour
     public Slider sliderLife;
     public Slider sliderSpawnBullet;
     public Slider sliderSpeedBullet;
+
+
+    [Space(5)]
+    [Header("Level Control")]
+    public Button[] btnLevel;
+
+    public int unlockLevels = 1;
+    public int levelActual = 0;
+
     #endregion
 
     private void Start()
     {
         PanelsControl(true, false, false);
         SlidersMaxValue();
-        FirstTime();   
+        FirstTime();
+        LevelUnlock();
+
     }
 
     private void Update()
@@ -66,7 +78,7 @@ public class MainScreen : MonoBehaviour
         UpgradeAttributes();
     }
 
-    #region Initial Attributes, Save, Load, and FirstTime
+    #region Initial Attributes
     ///<summary> true = firstTime, false = NOT first time</summary>
     public void InitialAttributes(bool firstTime)
     {
@@ -145,8 +157,9 @@ public class MainScreen : MonoBehaviour
             SaveData();
         }
     }
+    #endregion
 
-
+    #region Save and Load Data
     public void LoadData()
     {
         speedBulletMove = PlayerPrefs.GetFloat("speedBulletMove");
@@ -168,6 +181,9 @@ public class MainScreen : MonoBehaviour
         lifeUpAmount = PlayerPrefs.GetInt("lifeUpAmount");
         spawnUpAmount = PlayerPrefs.GetInt("spawnUpAmount");
         speedUpAmount = PlayerPrefs.GetInt("speedUpAmount");
+
+        //----------LevelUnlock
+        //levelUnlock = PlayerPrefs.GetInt("levelUnlock");
     }
     public void SaveData()
     {
@@ -190,6 +206,9 @@ public class MainScreen : MonoBehaviour
         PlayerPrefs.SetInt("lifeUpAmount", lifeUpAmount);
         PlayerPrefs.SetInt("spawnUpAmount", spawnUpAmount);
         PlayerPrefs.SetInt("speedUpAmount", speedUpAmount);
+
+        //----------LevelUnlock
+        //PlayerPrefs.SetInt("levelUnlock", levelUnlock);
     }
     public void FirstTime() {
 
@@ -340,18 +359,24 @@ public class MainScreen : MonoBehaviour
     #endregion
 
     #region Btns MainPanel, StatusPanel and WavesPanel
-    public void MainPanel()
+    public void Panels(int value)
     {
-        PanelsControl(true, false, false);
-    }
-    public void StatusPanel()
-    {
-        PanelsControl(false, true, false);
-    }
-
-    public void WavesPanel()
-    {
-        PanelsControl(false, false, true);
+        switch (value)
+        {
+            case 0:
+                PanelsControl(true, false, false); //main
+                break;
+            case 1:
+                PanelsControl(false, true, false); //status
+                break;
+            case 2:
+                PanelsControl(false, false, true); //wave
+                break;
+            default:
+                PanelsControl(true, false, false); //main
+                break;
+        }
+        
     }
 
     /// <summary>  true = ativada, false = desativada  </summary>
@@ -378,4 +403,26 @@ public class MainScreen : MonoBehaviour
     }
 
     #endregion
+
+    #region LevelUnlock
+
+    void LevelUnlock()
+    {
+        Debug.Log(btnLevel.Length);
+        for (int i = unlockLevels; i < btnLevel.Length; i++) { 
+            btnLevel[i].interactable = false;
+
+            //unlock levels, seu valor determina qual btn de "wave" fica habilitado/desabilitado
+            //esse valor determina a fase atual do player
+            //quando o player derrotar o chefao da wave atual o numero é atualizado permitindo o player acessar a proxima wave
+        } 
+    }
+
+
+    public void LevelActual(int value)
+    {
+        levelActual = value;
+    }
+    #endregion
 }
+

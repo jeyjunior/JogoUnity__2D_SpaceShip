@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeSpeedBullet
         m_Mode: 6
@@ -580,7 +580,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradePower
         m_Mode: 6
@@ -705,139 +705,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 137227793}
   m_CullTransparentMesh: 1
---- !u!1 &252379710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 252379711}
-  - component: {fileID: 252379714}
-  - component: {fileID: 252379713}
-  - component: {fileID: 252379712}
-  m_Layer: 5
-  m_Name: PlayGame
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &252379711
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252379710}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1786527271}
-  m_Father: {fileID: 981339346}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15, y: 0.16}
-  m_AnchorMax: {x: 0.85, y: 0.27}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 1.37}
---- !u!114 &252379712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252379710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 252379713}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 367680573}
-        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
-        m_MethodName: PlayGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &252379713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252379710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &252379714
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252379710}
-  m_CullTransparentMesh: 1
 --- !u!1 &311169581
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +828,6 @@ GameObject:
   - component: {fileID: 367680571}
   - component: {fileID: 367680570}
   - component: {fileID: 367680569}
-  - component: {fileID: 367680573}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: LevelCanva
@@ -1045,8 +911,8 @@ RectTransform:
   - {fileID: 104703985}
   - {fileID: 2094010032}
   - {fileID: 1988428283}
-  - {fileID: 517490590}
   - {fileID: 1282142430}
+  - {fileID: 517490590}
   - {fileID: 838714173}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1056,46 +922,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &367680573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367680568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f8c5cfdca079f2469a945382249460b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainPanel: {fileID: 981339345}
-  statusPanel: {fileID: 104703984}
-  wavesPanel: {fileID: 2094010031}
-  power: 3
-  crit: 0
-  maxLife: 300
-  spawnBulletDelay: 2.1
-  speedBulletMove: 5
-  maxExp: 30
-  currentExp: 0
-  lvlPlayer: 1
-  attributesPoints: 10
-  powerUpAmount: 0
-  critUpAmount: 0
-  lifeUpAmount: 0
-  spawnUpAmount: 0
-  speedUpAmount: 0
-  txtQtdAttributesPoints: {fileID: 2012434664}
-  txtStatsPower: {fileID: 1245255526}
-  txtStatsCritical: {fileID: 945734555}
-  txtStatsLife: {fileID: 719027134}
-  txtStatsSpawnBullet: {fileID: 2139716303}
-  txtStatsSpeedBullet: {fileID: 977188252}
-  sliderPower: {fileID: 1456153483}
-  sliderCritical: {fileID: 1585567006}
-  sliderLife: {fileID: 898699676}
-  sliderSpawnBullet: {fileID: 1598003966}
-  sliderSpeedBullet: {fileID: 2059198755}
 --- !u!1 &374540725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,7 +1223,7 @@ RectTransform:
   m_Children:
   - {fileID: 2093032645}
   m_Father: {fileID: 367680572}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.315, y: 0}
@@ -1448,14 +1274,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
-        m_MethodName: StatusPanel
-        m_Mode: 1
+        m_MethodName: Panels
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1594,7 +1420,7 @@ GameObject:
   - component: {fileID: 520720710}
   - component: {fileID: 520720709}
   m_Layer: 5
-  m_Name: btnWave3
+  m_Name: btnWave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1664,7 +1490,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 520720710}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: LevelActual
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &520720710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,7 +1992,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeSpawnBullet
         m_Mode: 6
@@ -2275,7 +2125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeLife
         m_Mode: 6
@@ -2496,7 +2346,7 @@ GameObject:
   - component: {fileID: 751209630}
   - component: {fileID: 751209629}
   m_Layer: 5
-  m_Name: btnWave4
+  m_Name: btnWave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2566,7 +2416,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 751209630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: LevelActual
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &751209630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2688,7 +2562,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeSpawnBullet
         m_Mode: 6
@@ -2857,14 +2731,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
-        m_MethodName: WavesPanel
-        m_Mode: 1
+        m_MethodName: Panels
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3035,7 +2909,7 @@ GameObject:
   - component: {fileID: 866112231}
   - component: {fileID: 866112230}
   m_Layer: 5
-  m_Name: btnWave1
+  m_Name: btnWave0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3105,7 +2979,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 866112231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: LevelActual
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &866112231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3574,7 +3472,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 252379711}
   - {fileID: 1906609332}
   m_Father: {fileID: 367680572}
   m_RootOrder: 0
@@ -3860,7 +3757,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: BtnResetAttributes
         m_Mode: 1
@@ -4187,7 +4084,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeSpeedBullet
         m_Mode: 6
@@ -4348,7 +4245,7 @@ RectTransform:
   m_Children:
   - {fileID: 1097257056}
   m_Father: {fileID: 367680572}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.315, y: 0}
   m_AnchorMax: {x: 0.688, y: 0}
@@ -4399,10 +4296,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
-        m_MethodName: MainPanel
-        m_Mode: 1
+        m_MethodName: Panels
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5241,7 +5138,7 @@ GameObject:
   - component: {fileID: 1541499410}
   - component: {fileID: 1541499409}
   m_Layer: 5
-  m_Name: btnWave2
+  m_Name: btnWave1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5311,7 +5208,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1541499410}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: LevelActual
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1708287683}
+        m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
+        m_MethodName: PlayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1541499410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5522,7 +5443,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeCritical
         m_Mode: 6
@@ -5898,7 +5819,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: SaveData
         m_Mode: 1
@@ -6189,7 +6110,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeCritical
         m_Mode: 6
@@ -6239,6 +6160,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665855023}
   m_CullTransparentMesh: 1
+--- !u!1 &1708287682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1708287684}
+  - component: {fileID: 1708287683}
+  m_Layer: 0
+  m_Name: MainScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1708287683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708287682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8c5cfdca079f2469a945382249460b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPanel: {fileID: 981339345}
+  statusPanel: {fileID: 104703984}
+  wavesPanel: {fileID: 2094010031}
+  power: 3
+  crit: 0
+  maxLife: 300
+  spawnBulletDelay: 2.1
+  speedBulletMove: 5
+  maxExp: 30
+  currentExp: 0
+  lvlPlayer: 1
+  attributesPoints: 10
+  powerUpAmount: 0
+  critUpAmount: 0
+  lifeUpAmount: 0
+  spawnUpAmount: 0
+  speedUpAmount: 0
+  txtQtdAttributesPoints: {fileID: 2012434664}
+  txtStatsPower: {fileID: 1245255526}
+  txtStatsCritical: {fileID: 945734555}
+  txtStatsLife: {fileID: 719027134}
+  txtStatsSpawnBullet: {fileID: 2139716303}
+  txtStatsSpeedBullet: {fileID: 977188252}
+  sliderPower: {fileID: 1456153483}
+  sliderCritical: {fileID: 1585567006}
+  sliderLife: {fileID: 898699676}
+  sliderSpawnBullet: {fileID: 1598003966}
+  sliderSpeedBullet: {fileID: 2059198755}
+  btnLevel:
+  - {fileID: 866112230}
+  - {fileID: 1541499409}
+  - {fileID: 520720709}
+  - {fileID: 751209629}
+  unlockLevels: 1
+  levelActual: 0
+--- !u!4 &1708287684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708287682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.71219784, y: 0.0629286, z: -3.9469602}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1741443489
 GameObject:
   m_ObjectHideFlags: 0
@@ -6358,85 +6357,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1786527270
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1786527271}
-  - component: {fileID: 1786527273}
-  - component: {fileID: 1786527272}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1786527271
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786527270}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 252379711}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1786527272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786527270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 910b845299f12504097d6a2254481c7c, type: 3}
-    m_FontSize: 64
-    m_FontStyle: 1
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 64
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "Come\xE7ar"
---- !u!222 &1786527273
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1786527270}
-  m_CullTransparentMesh: 1
 --- !u!1 &1819748794
 GameObject:
   m_ObjectHideFlags: 0
@@ -6595,7 +6515,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradePower
         m_Mode: 6
@@ -6827,7 +6747,7 @@ RectTransform:
   m_Children:
   - {fileID: 1741443490}
   m_Father: {fileID: 981339346}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.3, y: 0.85}
   m_AnchorMax: {x: 0.7, y: 0.9}
@@ -6878,7 +6798,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: DeleteSave
         m_Mode: 1
@@ -7205,7 +7125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 367680573}
+      - m_Target: {fileID: 1708287683}
         m_TargetAssemblyTypeName: MainScreen, Assembly-CSharp
         m_MethodName: UpgradeLife
         m_Mode: 6
