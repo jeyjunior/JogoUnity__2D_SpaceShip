@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7144137245327554163}
   - component: {fileID: 3063615176798469522}
   m_Layer: 0
-  m_Name: SimpleAliensSpawn
+  m_Name: SpawnAlienB_Simple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,3 +51,5 @@ MonoBehaviour:
   spawnedSimpleEnemyLeft: 0
   maxSpawnSimpleEnemyRight: 6
   spawnedSimpleEnemyRight: 0
+  randomSpawn: 0
+  enemyToSpawn: 1

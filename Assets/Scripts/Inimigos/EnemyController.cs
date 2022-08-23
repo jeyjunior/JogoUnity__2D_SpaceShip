@@ -33,9 +33,6 @@ public class EnemyController : MonoBehaviour
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         spawnPosition = new Vector2(0, 0);
-
-        //Quando criar a sequencia dos spawns com os outros grupos, modificar esse modelo de instancia
-        Instantiate(enemysGroup[0], spawnPosition, Quaternion.identity);
     }
 
     private void Update()
@@ -43,7 +40,10 @@ public class EnemyController : MonoBehaviour
         //Só pode spawnar os inimigos comuns se a luta com chefão for false
         if (!bigBossFight_)
         {
-
+            if(enemysSpawned <= 0)
+            {
+                Instantiate(enemysGroup[Mathf.RoundToInt(Random.Range(0,4))], spawnPosition, Quaternion.identity);
+            }
         }
         else
         {

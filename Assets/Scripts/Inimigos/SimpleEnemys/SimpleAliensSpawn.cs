@@ -20,6 +20,11 @@ public class SimpleAliensSpawn : MonoBehaviour
     public int maxSpawnSimpleEnemyRight = 6;
     public int spawnedSimpleEnemyRight;
 
+    [Space(5)]
+    [Header("Spawn Definition")]
+    public bool randomSpawn;
+    public int enemyToSpawn = 0;
+
     void Start()
     {
         maxSpawnSimpleEnemyLeft = xPositionLeft.Length;
@@ -47,7 +52,8 @@ public class SimpleAliensSpawn : MonoBehaviour
             {
                 spawnedSimpleEnemyLeft++;
                 Vector2 position = new Vector2(xPositionLeft[i], 3);
-                Instantiate(enemys[(int)Random.Range(0,2)], position, Quaternion.identity);
+                if (randomSpawn) Instantiate(enemys[(int)Random.Range(0, 3)], position, Quaternion.identity);
+                else Instantiate(enemys[enemyToSpawn], position, Quaternion.identity);
             }
         }
     }
@@ -60,7 +66,10 @@ public class SimpleAliensSpawn : MonoBehaviour
             {
                 spawnedSimpleEnemyRight++;
                 Vector2 position = new Vector2(xPositionRight[i], 4);
-                Instantiate(enemys[(int)Random.Range(0, 2)], position, Quaternion.identity);
+                if (randomSpawn) Instantiate(enemys[(int)Random.Range(0, 3)], position, Quaternion.identity);
+                else Instantiate(enemys[enemyToSpawn], position, Quaternion.identity);
+
+
             }
         }
     }

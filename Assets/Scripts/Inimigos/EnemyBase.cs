@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -26,6 +25,7 @@ public class EnemyBase : MonoBehaviour
     //Formular dos atributos: Player Level 
     private void AttributesValue()
     {
+
         level = PlayerPrefs.GetInt("levelActual") + 1; 
 
         life = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
