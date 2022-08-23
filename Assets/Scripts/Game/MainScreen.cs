@@ -67,20 +67,20 @@ public class MainScreen : MonoBehaviour
         PanelsControl(true, false, false);
         SlidersMaxValue();
         FirstTime();
-        LevelUnlock();
 
     }
 
     private void Update()
     {
         UpgradeAttributes();
+        LevelUnlock();
     }
 
     #region Initial Attributes
     ///<summary> true = firstTime, false = NOT first time</summary>
     public void InitialAttributes(bool firstTime)
     {
-        
+
         if (firstTime)
         {
             power = 3;
@@ -94,11 +94,13 @@ public class MainScreen : MonoBehaviour
             lvlPlayer = 1;
             attributesPoints = 10;
 
-            powerUpAmount = 0; 
-            critUpAmount = 0; 
-            lifeUpAmount = 0; 
-            spawnUpAmount = 0; 
+            powerUpAmount = 0;
+            critUpAmount = 0;
+            lifeUpAmount = 0;
+            spawnUpAmount = 0;
             speedUpAmount = 0;
+
+            unlockLevels = 1;
         }
         else
         {
@@ -151,9 +153,8 @@ public class MainScreen : MonoBehaviour
                     speedUpAmount--;
                 }
             }
-
-            SaveData();
         }
+        SaveData();
     }
     #endregion
 
@@ -181,7 +182,7 @@ public class MainScreen : MonoBehaviour
         speedUpAmount = PlayerPrefs.GetInt("speedUpAmount");
 
         //----------LevelUnlock
-        //levelUnlock = PlayerPrefs.GetInt("levelUnlock");
+        unlockLevels = PlayerPrefs.GetInt("unlockLevels");
     }
     public void SaveData()
     {
@@ -206,10 +207,11 @@ public class MainScreen : MonoBehaviour
         PlayerPrefs.SetInt("speedUpAmount", speedUpAmount);
 
         //----------LevelUnlock
-        //PlayerPrefs.SetInt("levelUnlock", levelUnlock);
+        PlayerPrefs.SetInt("unlockLevels", unlockLevels);
         PlayerPrefs.SetInt("levelActual", levelActual);
     }
-    public void FirstTime() {
+    public void FirstTime()
+    {
 
         //Se existir um save, load dados - senao, atribui os valores iniciais
         if (PlayerPrefs.HasKey("power") || PlayerPrefs.HasKey("maxLife"))
@@ -375,7 +377,7 @@ public class MainScreen : MonoBehaviour
                 PanelsControl(true, false, false); //main
                 break;
         }
-        
+
     }
 
     /// <summary>  true = ativada, false = desativada  </summary>
@@ -407,20 +409,21 @@ public class MainScreen : MonoBehaviour
 
     void LevelUnlock()
     {
-        for (int i = unlockLevels; i < btnLevel.Length; i++) { 
+        for (int i = unlockLevels; i < btnLevel.Length; i++)
+        {
             btnLevel[i].interactable = false;
 
             //unlock levels, seu valor determina qual btn de "wave" fica habilitado/desabilitado
             //esse valor determina a fase atual do player
             //quando o player derrotar o chefao da wave atual o numero é atualizado permitindo o player acessar a proxima wave
-        } 
+        }
     }
 
 
     public void LevelActual(int value)
     {
         levelActual = value;
+        PlayerPrefs.SetInt("levelActual", levelActual);
     }
     #endregion
 }
-

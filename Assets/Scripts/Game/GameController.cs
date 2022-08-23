@@ -28,25 +28,33 @@ public class GameController : MonoBehaviour
     [Space(5)]
     [Header("Death")]
     public GameObject deathPanel;
-    public bool dead;
+
+    [Space(5)]
+    [Header("Win")]
+    public GameObject winPanel;
+    public bool bossElimineted;
 
     [Space(5)]
     [Header("TimeControl")]
-    public Text txtTimeCount;
     public int timeCount = 0;
 
+    public int unlockLevels = 1;
+    public int levelActual = 0;
     void Start()
     {
-        Time.timeScale = 1;
+        levelActual = PlayerPrefs.GetInt("levelActual");
+
+        bossElimineted = false;
+        EndLevel(false, false, 1, true);
 
         spaceShip = GameObject.FindWithTag("Player").GetComponent<SpaceShip>();
 
         //Life
         currentLife = maxLife;
-        LoadData();
-
+        
         //DeathPanel
         deathPanel.SetActive(false);
+        LoadData();
     }
 
 
@@ -54,44 +62,36 @@ public class GameController : MonoBehaviour
     {
         ExperienceControl();
         LifeBarControl();
+
+        if (bossElimineted) EndLevel(true, false, 0, false);
     }
 
-    #region Life and Death Control
+    #region LifeBar
     void LifeBarControl()
     {
         spaceShip.lifeBar.value = currentLife;
-        if(currentLife <= 0)
-        {
-            dead = true;
-            deathPanel.SetActive(true);
-            SaveData();
-            Time.timeScale = 0;
-        }
-        else
-        {
-            dead = false;
-        }
+        if (currentLife <= 0) EndLevel(false, true, 0, false);
     }
     #endregion
 
     #region Take DMG from enemies
     public void TakeDamage(int dmgReceive)
     {
-       currentLife -= dmgReceive;
+        currentLife -= dmgReceive;
     }
     #endregion
 
     #region Experience and Level Control
     void ExperienceControl()
     {
-        if(currentExp >= maxExp)
+        if (currentExp >= maxExp)
         {
             currentExp -= maxExp;
             maxExp *= 2;
             lvlPlayer++;
             attributesPoints += 3; //pontos para usuario distribuir como quiser nos atributos
             spaceShip.expBarSlider.maxValue = maxExp; //atualiza exp max
-            
+
             currentLife = maxLife;
             spaceShip.lifeBar.maxValue = maxLife;
         }
@@ -99,7 +99,8 @@ public class GameController : MonoBehaviour
         spaceShip.expBarSlider.value = currentExp;
     }
 
-    public void GainingExperience(int exp){
+    public void GainingExperience(int exp)
+    {
         currentExp += exp;
     }
     #endregion
@@ -107,19 +108,19 @@ public class GameController : MonoBehaviour
     #region Load and Save
     public void SaveData()
     {
-            PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
-            PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
+        PlayerPrefs.SetFloat("speedBulletMove", speedBulletMove);
+        PlayerPrefs.SetFloat("spawnBulletDelay", spawnBulletDelay);
 
-            PlayerPrefs.SetInt("power", power);
-            PlayerPrefs.SetInt("crit", crit);
+        PlayerPrefs.SetInt("power", power);
+        PlayerPrefs.SetInt("crit", crit);
 
-            PlayerPrefs.SetInt("maxExp", maxExp);
-            PlayerPrefs.SetInt("currentExp", currentExp);
-            PlayerPrefs.SetInt("lvlPlayer", lvlPlayer);
-            PlayerPrefs.SetInt("attributesPoints", attributesPoints);
+        PlayerPrefs.SetInt("maxExp", maxExp);
+        PlayerPrefs.SetInt("currentExp", currentExp);
+        PlayerPrefs.SetInt("lvlPlayer", lvlPlayer);
+        PlayerPrefs.SetInt("attributesPoints", attributesPoints);
 
-            PlayerPrefs.SetInt("maxLife", maxLife);
-    }
+        PlayerPrefs.SetInt("maxLife", maxLife);
+}
 
     public void LoadData()
     {
@@ -136,13 +137,24 @@ public class GameController : MonoBehaviour
         attributesPoints = PlayerPrefs.GetInt("attributesPoints");
 
         maxLife = PlayerPrefs.GetInt("maxLife");
+
+        unlockLevels = PlayerPrefs.GetInt("unlockLevels");
     }
     #endregion
 
-    #region Btn BackToMain and RestartGame
+    #region Panels
     public void BackToMain()
     {
         SaveData();
+
+
+        //libera proxima fase apenas quando o player jogar na ultima fase liberada
+        if(levelActual >= unlockLevels && bossElimineted)
+        {
+            unlockLevels++;
+            PlayerPrefs.SetInt("unlockLevels", unlockLevels);
+        }
+
         SceneManager.LoadScene(0);
     }
 
@@ -151,10 +163,14 @@ public class GameController : MonoBehaviour
         SaveData();
         SceneManager.LoadScene(1);
     }
-    #endregion
 
-    #region Win
+    void EndLevel(bool winPanel_, bool deathPanel_, float timeScale, bool sliderMove)
+    {
+        winPanel.SetActive(winPanel_);
+        deathPanel.SetActive(deathPanel_);
+        Time.timeScale = timeScale;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<SpaceShip>().valueMove.interactable = sliderMove;
+    }
 
-
-    #endregion
+   #endregion
 }

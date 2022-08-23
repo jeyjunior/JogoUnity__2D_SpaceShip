@@ -27,9 +27,11 @@ public class SpaceShip : MonoBehaviour
     void Awake()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+ 
 
         //Move Control
         valueMove = GameObject.Find("MoveSlider").GetComponent<Slider>();
+        valueMove.interactable = true;
 
         //LifeBar
         lifeBar.maxValue = gameController.maxLife;
@@ -46,6 +48,11 @@ public class SpaceShip : MonoBehaviour
     void Update()
     {
         SpaceShipMove();
+
+        if (gameController.bossElimineted) {
+            valueMove.interactable = false;
+            CancelInvoke("SpawnBullets");
+        }
     }
 
     #region SpaceShipMove

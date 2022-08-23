@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,16 +19,32 @@ public class EnemyRangedAttack : MonoBehaviour
     public int chooseBulletIndex;
     public int chooseSpawnPointIndex;
 
+    public bool bulletSpawned = false;
+
     private void Start()
     {
         randomSpawn = 5;
-        InvokeRepeating("SpawnBullet", 0, randomSpawn);
     }
 
-    void SpawnBullet()
+    private void Update()
     {
-        Instantiate(bullet, spawnPoint.transform.position, Quaternion.identity);
-        randomSpawn = Mathf.RoundToInt(Random.Range(1, 5));
+        if(!bulletSpawned)
+        {
+            bulletSpawned = true;
+            StartCoroutine(SpawnBullet());
+        }
     }
 
+
+    IEnumerator SpawnBullet()
+    {
+        yield return new WaitForSeconds(randomSpawn);
+
+        Instantiate(bullet,
+                    spawnPoint.transform.position,
+                    Quaternion.identity);
+        
+        randomSpawn = Mathf.RoundToInt(Random.Range(1, 5));
+        bulletSpawned = false;
+    }
 }

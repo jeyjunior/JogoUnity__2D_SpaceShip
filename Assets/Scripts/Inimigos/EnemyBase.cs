@@ -72,7 +72,10 @@ public class EnemyBase : MonoBehaviour
     {
         life -= dmg;
         lifeBar.value = life;
-        if (life <= 0) DeathSystem(true);
+        if (life <= 0) {
+            DeathSystem(true);
+            if (this.gameObject.CompareTag("Boss")) gameController.bossElimineted = true;
+        }
     }
 
     void hitPlayer()

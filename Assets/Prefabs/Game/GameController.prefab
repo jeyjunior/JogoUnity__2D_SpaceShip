@@ -43,16 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f613ddb34791454e9f61ee93347f697, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBulletMove: 2
-  spawnBulletDelay: 2.1
   power: 3
   crit: 50
+  maxLife: 300
+  currentLife: 0
+  spawnBulletDelay: 2.1
+  speedBulletMove: 2
   maxExp: 30
   currentExp: 0
   lvlPlayer: 1
   attributesPoints: 0
-  maxLife: 300
-  currentLife: 0
   spaceShip: {fileID: 0}
   deathPanel: {fileID: 0}
-  dead: 0
+  winPanel: {fileID: 0}
+  bossElimineted: 0
+  txtTimeCount: {fileID: 0}
+  timeCount: 0
+  unlockLevels: 1
