@@ -4,11 +4,9 @@ using System.Collections;
 
 public class TimeControl : MonoBehaviour
 {
-    public Text txtTimeCount;
-
     [SerializeField]
     int timeCount;
-    public int timeBossSpawn = 20;
+    public int timeBossSpawn = 5;
     public bool bigBossFight;
 
     //Objetivos concluido
@@ -19,11 +17,6 @@ public class TimeControl : MonoBehaviour
     {
         timeCount = 0;
         StartCoroutine(ControllingSpawnTime());
-    }
-
-    private void Update()
-    {
-        txtTimeCount.text = timeCount.ToString();
     }
 
     IEnumerator ControllingSpawnTime() {
@@ -38,11 +31,12 @@ public class TimeControl : MonoBehaviour
                 if (timeCount == timeBossSpawn)
                 {
                     bigBossFight = true;
+
+                    this.gameObject.GetComponent<EnemyController>().bigBossFight_ = true;
                     timeCount = 0;
                     StopCoroutine(ControllingSpawnTime());
                 }
             }
         }
     }
-
 }

@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyBase : MonoBehaviour
 {
     [Space(5)]
     [Header("Attributes Base")]
-    public int life;
-    public int poder;
-    public float speedMove = 1;
-    public int exp;
-    public int level;
+    public int valueMin;
+    public int valueMax;
+
+    [Space(5)]
+    public int life; //Vida total
+    public int power; //dano causado no player (quando colide ou atira)
+    public int exp; //exp para dropar
+
+    int level; //
 
     [Space(5)]
     [Header("GameObjects")]
@@ -17,25 +22,20 @@ public class EnemyBase : MonoBehaviour
     EnemyController enemyController;
     public Slider lifeBar;
 
-    private void AttributesValue(int valueMin, int valueMax)
+
+    //Formular dos atributos: Player Level 
+    private void AttributesValue()
     {
-        //Attribute Value
-        life = Mathf.RoundToInt(Random.Range(valueMin, valueMax)); ;
-        poder = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
-        exp = Mathf.RoundToInt(Random.Range(valueMin, valueMax));
+        level = PlayerPrefs.GetInt("levelActual") + 1; 
 
-        SpeedMove(0.1f, 0.8f);
-
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.1f, 1), 0, 0);
+        life = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
+        power = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
+        exp = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
     }
-
-
-    public void SpeedMove(float min, float max) => speedMove = Random.Range(min, max);
-
 
     private void Awake()
     {
-        AttributesValue(1, 20);
+        AttributesValue();
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         enemyController = GameObject.FindGameObjectWithTag("EnemyController").GetComponent<EnemyController>();
 
@@ -59,8 +59,6 @@ public class EnemyBase : MonoBehaviour
                 {
                     DeathSystem(true);
                 }
-
-                gameController.SaveData();
                 break;
 
             case "Player":
@@ -69,12 +67,6 @@ public class EnemyBase : MonoBehaviour
 
             case "EndEnemies":
                 DeathSystem(false);
-                break;
-            case "SwitchDirToDown":
-                this.gameObject.GetComponent<EnemyMove>().DirControl(false);
-                break;
-            case "SwitchDirToUp":
-                this.gameObject.GetComponent<EnemyMove>().DirControl(true);
                 break;
         }
 
@@ -91,10 +83,9 @@ public class EnemyBase : MonoBehaviour
     {
         //hitPlayer aciona metodo DMGReceive que controla a perda de vida do player
         //Controle é realizado no GameController
-        gameController.DmgReceive(poder);
+        gameController.DmgReceive(power);
     }
     #endregion
-
     #region Death System
     //Death system and exp delivery to the player
     public void DeathSystem(bool drops)
@@ -103,7 +94,7 @@ public class EnemyBase : MonoBehaviour
         {
             gameController.GainingExperience(exp);
         }
-        enemyController.spawned--;
+        enemyController.enemysSpawned--;
         Destroy(this.gameObject);
     }
     #endregion

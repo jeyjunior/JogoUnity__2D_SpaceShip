@@ -209,6 +209,7 @@ public class MainScreen : MonoBehaviour
 
         //----------LevelUnlock
         //PlayerPrefs.SetInt("levelUnlock", levelUnlock);
+        PlayerPrefs.SetInt("levelActual", levelActual);
     }
     public void FirstTime() {
 
@@ -408,7 +409,6 @@ public class MainScreen : MonoBehaviour
 
     void LevelUnlock()
     {
-        Debug.Log(btnLevel.Length);
         for (int i = unlockLevels; i < btnLevel.Length; i++) { 
             btnLevel[i].interactable = false;
 

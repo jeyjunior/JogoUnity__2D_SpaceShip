@@ -1,43 +1,65 @@
 using UnityEngine;
 
+
+
 public class EnemyController : MonoBehaviour
 {
     [Space(5)]
     [Header("GameObjects")]
     public GameController gameController;
 
-    [Space(5)]
-    [Header("Control Spawns")]
-    [SerializeField]
-    int maxSpawn = 20;
-    public int spawned=0;
+    //Sempre que spawnar um grupo de inimigos, sera registrado o total de inimigos na tela
+    //Conforme esse número for zerando, uma outra onda de inimigos será spawnada
+    public int enemysSpawned = 0;
+    
+    //Utilizar o spawn Sequence para determinar a sequencia dos grupos de inimigos que serão spawnandos
+    int SpawnSequence;
 
     [Space(5)]
-    [Header("Enemys list")]
-    public GameObject[] enemy = new GameObject[1];
+    [Header("Spawn Enemys Group")]
+    public GameObject[] enemysGroup = new GameObject[1];
+    public Vector2 spawnPosition;
+
+
+    [Space(5)]
+    public GameObject[] boss = new GameObject[1];
+    public bool bigBossFight_;
+    public bool bossSpawned;
+
+
+
 
     void Start()
     {
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        spawnPosition = new Vector2(0, 0);
+
+        //Quando criar a sequencia dos spawns com os outros grupos, modificar esse modelo de instancia
+        Instantiate(enemysGroup[0], spawnPosition, Quaternion.identity);
     }
 
     private void Update()
     {
-        SlimeSpawn();
-    }
-
-    private void SlimeSpawn()
-    {
-        if(spawned < maxSpawn)
+        //Só pode spawnar os inimigos comuns se a luta com chefão for false
+        if (!bigBossFight_)
         {
-            
-            Vector2 position = new Vector2(Random.Range(-2f, 2f), 6);
-            Instantiate(enemy[0], position, Quaternion.identity);
-            //spawnedQuantity = Mathf.RoundToInt(Random.Range(3, 10));
-            spawned++;
-            //await Task.Delay(1000);
-        }
 
+        }
+        else
+        {
+            //Inimigos não pode existir com o chefão
+            Destroy(GameObject.FindGameObjectWithTag("Enemies"));
+            BossSpawn();
+        }
+    }
+ 
+    void BossSpawn()
+    {
+        if (!bossSpawned)
+        {
+            Instantiate(boss[(int)Random.Range(0, boss.Length)], new Vector2(0,6), Quaternion.identity);
+            bossSpawned = true;    
+        }
     }
 
 }
