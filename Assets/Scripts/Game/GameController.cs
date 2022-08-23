@@ -75,7 +75,7 @@ public class GameController : MonoBehaviour
     #endregion
 
     #region Take DMG from enemies
-    public void DmgReceive(int dmgReceive)
+    public void TakeDamage(int dmgReceive)
     {
        currentLife -= dmgReceive;
     }

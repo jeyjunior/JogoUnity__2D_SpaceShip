@@ -5,10 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelCanva
-  - Bullet
   - EnemyController
   - EndEnemies
   - Enemies
+  - EnemyBullet
+  - PlayerBullet
+  - Boss
   layers:
   - Default
   - TransparentFX

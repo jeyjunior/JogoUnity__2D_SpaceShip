@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class EnemyBase : MonoBehaviour
 {
+    //Classe usada para todos inimigos comuns, mini chefes e big boss
+
+
     [Space(5)]
     [Header("Attributes Base")]
     public int valueMin;
@@ -43,24 +46,11 @@ public class EnemyBase : MonoBehaviour
         lifeBar.value = life;
     }
  
-    #region Receiving and Dealing Damage
+    #region Dealing Damage
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
-            case "Bullet":
-                Destroy(collision.gameObject);
-                var bulletStatus = collision.gameObject.GetComponent<BulletBehaviors>();
-
-                life -= bulletStatus.power;
-                lifeBar.value = life;
-
-                if (life <= 0)
-                {
-                    DeathSystem(true);
-                }
-                break;
-
             case "Player":
                 InvokeRepeating("hitPlayer", 0, 0.3f);
                 break;
@@ -78,12 +68,18 @@ public class EnemyBase : MonoBehaviour
         CancelInvoke("hitPlayer");
     }
 
+    public void TakeDamage(int dmg)
+    {
+        life -= dmg;
+        lifeBar.value = life;
+        if (life <= 0) DeathSystem(true);
+    }
 
     void hitPlayer()
     {
         //hitPlayer aciona metodo DMGReceive que controla a perda de vida do player
         //Controle é realizado no GameController
-        gameController.DmgReceive(power);
+        gameController.TakeDamage(power);
     }
     #endregion
     #region Death System

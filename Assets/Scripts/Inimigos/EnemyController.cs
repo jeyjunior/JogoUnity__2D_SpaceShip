@@ -42,7 +42,7 @@ public class EnemyController : MonoBehaviour
         {
             if(enemysSpawned <= 0)
             {
-                Instantiate(enemysGroup[Mathf.RoundToInt(Random.Range(0,4))], spawnPosition, Quaternion.identity);
+                Instantiate(enemysGroup[0], spawnPosition, Quaternion.identity);
             }
         }
         else
