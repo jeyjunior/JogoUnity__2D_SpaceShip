@@ -22,7 +22,7 @@ public class PlayerBulletAttributes : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        if (tag == "Enemies" || tag == "Boss")
+        if (tag == "Enemies" || tag == "Boss" || tag == "Asteroid")
         {
             collision.GetComponent<EnemyAttributes>().TakeDamage(power);
             Destroy(this.gameObject);

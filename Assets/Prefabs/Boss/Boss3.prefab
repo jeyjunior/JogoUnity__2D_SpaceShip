@@ -142,7 +142,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.13747501, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -247,7 +247,6 @@ MonoBehaviour:
   - {fileID: 7676825548384404326, guid: 75f8749500d4b714ebac9a7d75eeb283, type: 3}
   - {fileID: 1937382023585820292, guid: ad72255d0de953a4eaceeed69295de7d, type: 3}
   - {fileID: 5855876000181751247, guid: 12c200182ad5eb94eb78626a9acc272b, type: 3}
-  - {fileID: 7628720830364049336, guid: fd0a5d4c1718a1747b445b017a8ab568, type: 3}
   - {fileID: 7628720830364049336, guid: fd0a5d4c1718a1747b445b017a8ab568, type: 3}
   spawnPoint:
   - {fileID: 4000158991069052224}

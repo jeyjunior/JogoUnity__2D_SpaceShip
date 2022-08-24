@@ -13,8 +13,15 @@ public class BulletMove : MonoBehaviour
 
     void Start ()
     {
-        speed = 3; directionMove = 1;
-        Destroy(this.gameObject, 5);
+        directionMove = 1;
+
+
+        if (this.gameObject.CompareTag("Asteroid")) speed = 1;
+        else { 
+            speed = 3; 
+            Destroy(this.gameObject, 5);
+        }
+
     }
 
     void Update()

@@ -31,7 +31,7 @@ public class EnemySpawnBullet : MonoBehaviour
     private void Start()
     {
         randomSpawn = 5;
-        bulletType = Random.Range(0, 5);
+        bulletType = Random.Range(0, bullet.Length);
     }
 
     private void Update()

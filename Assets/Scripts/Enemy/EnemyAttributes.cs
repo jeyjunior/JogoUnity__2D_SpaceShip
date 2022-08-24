@@ -32,9 +32,10 @@ public class EnemyAttributes : MonoBehaviour
         level = PlayerPrefs.GetInt("levelActual") + 1; 
 
         life = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
-        power = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
+        power = valueMin * level;
 
         if (this.gameObject.CompareTag("Enemies")) exp = 2;
+        else if (this.gameObject.CompareTag("Asteroid")) exp = 5;
         else if (this.gameObject.CompareTag("Boss")) exp = 30;
     }
 
@@ -94,11 +95,10 @@ public class EnemyAttributes : MonoBehaviour
     //Death system and exp delivery to the player
     public void DeathSystem(bool drops)
     {
-        if (drops)
-        {
-            gameController.GainingExperience(exp);
-        }
-        enemyController.enemysSpawned--;
+        if (drops) gameController.GainingExperience(exp);
+
+        if(this.gameObject.CompareTag("Enemies")) enemyController.enemysSpawned--;
+
         Destroy(this.gameObject);
     }
     #endregion
