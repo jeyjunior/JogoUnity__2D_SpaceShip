@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyBase : MonoBehaviour
+public class EnemyAttributes : MonoBehaviour
 {
     //Classe usada para todos inimigos comuns, mini chefes e big boss
 

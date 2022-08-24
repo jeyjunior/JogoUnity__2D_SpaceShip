@@ -24,7 +24,7 @@ public class PlayerBulletAttributes : MonoBehaviour
 
         if (tag == "Enemies" || tag == "Boss")
         {
-            collision.GetComponent<EnemyBase>().TakeDamage(power);
+            collision.GetComponent<EnemyAttributes>().TakeDamage(power);
             Destroy(this.gameObject);
         }
     }

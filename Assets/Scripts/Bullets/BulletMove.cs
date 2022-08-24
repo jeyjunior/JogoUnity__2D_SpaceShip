@@ -4,16 +4,16 @@ public class BulletMove : MonoBehaviour
    
 {
     public float speed;
-    public int directionMove; //0 up - 1 down
+
+    [Tooltip("0 = Vector2.up / 1 = Vector2.down")]
+    public int directionMove; 
+
     Vector2[] v2Direction = { Vector2.up, Vector2.down };
 
 
     void Start ()
     {
-        if (this.gameObject.CompareTag("EnemyBullet"))
-        {
-            speed = 3; directionMove = 1;
-        }
+        speed = 3; directionMove = 1;
         Destroy(this.gameObject, 5);
     }
 

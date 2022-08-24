@@ -2,22 +2,16 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyRangedAttack : MonoBehaviour
+public class EnemySpawnSingleBullet : MonoBehaviour
 {
 
     public GameObject bullet;
     public GameObject spawnPoint;
 
-    EnemyBase enemyBase;
-
     [Space(5)]
     [Header("Random Time To Spawn Bullets")]
     public int randomSpawn;
 
-    [Space(5)]
-    [Header("Index bullets and SpawnPoint")]
-    public int chooseBulletIndex;
-    public int chooseSpawnPointIndex;
 
     public bool bulletSpawned = false;
 
@@ -28,16 +22,18 @@ public class EnemyRangedAttack : MonoBehaviour
 
     private void Update()
     {
+
         if(!bulletSpawned)
         {
+            StartCoroutine(SpawnSingleBullet());
             bulletSpawned = true;
-            StartCoroutine(SpawnBullet());
         }
     }
 
 
-    IEnumerator SpawnBullet()
+    IEnumerator SpawnSingleBullet()
     {
+        //SingleBullet spawna sempre do index 0 do bullet e spawnpoint
         yield return new WaitForSeconds(randomSpawn);
 
         Instantiate(bullet,
