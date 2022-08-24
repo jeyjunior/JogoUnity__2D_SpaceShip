@@ -23,12 +23,15 @@ public class EnemySpawnBullet : MonoBehaviour
     [Header("Choose the sequence of spawnBullets")]
     [Tooltip("1 = VariantOne Method")]
     public int variant = 1;
-
+    public int bulletType; //Sorteio de qual será o tiro do chefe
     bool spawnThree = false;
+
+
 
     private void Start()
     {
         randomSpawn = 5;
+        bulletType = Random.Range(0, 5);
     }
 
     private void Update()
@@ -40,11 +43,11 @@ public class EnemySpawnBullet : MonoBehaviour
             {
                 case 0:
                     //Spawna apenas uma bullet em um unico spawnPoint
-                    StartCoroutine(SpawnSingleBullet());
+                    StartCoroutine(SpawnSingleBullet(bulletType));
                     break;
                 case 1:
                     //spawnpoint 0 = esquerda / 2 = direita / 1 = central
-                    StartCoroutine(SpawnMultipleBulletVariantOne(new int[] {0,0,0}, new int[] {0,2,1}));
+                    StartCoroutine(SpawnMultipleBulletVariantOne(new int[] {0,2,1}));
                     break;
                 case 2:
                     StartCoroutine(SpawnMultipleBulletVariantTwo(Random.Range(0,2)));
@@ -64,17 +67,17 @@ public class EnemySpawnBullet : MonoBehaviour
     //eBulletD = Três balas, todas mesmo tamanho, balas lateriais sem movem no eixo X e Y, (gerando um "modelo de cone"), central se move apenas no Y
     //eBulletE = Unica bala, se move na direção do player
 
-    IEnumerator SpawnSingleBullet()
+    IEnumerator SpawnSingleBullet(int index)
     {
         yield return new WaitForSeconds(randomSpawn);
 
-        InstantiateBullets(0,0);
+        InstantiateBullets(index,0);
 
         randomSpawn = Mathf.RoundToInt(Random.Range(1, 5));
         bulletSpawned = false;
     }
 
-    IEnumerator SpawnMultipleBulletVariantOne(int[] indexBullet, int[] indexSpawnBullet )
+    IEnumerator SpawnMultipleBulletVariantOne(int[] indexSpawnBullet )
     {
         //primeiro array define qual modelo de bullet será usado
         //segundo array define qual o spawnpoint será utilizado
@@ -84,13 +87,13 @@ public class EnemySpawnBullet : MonoBehaviour
         if(random < 1)
         {
             //Spawna bullet dos spawnpoints laterais
-            InstantiateBullets(indexBullet[0], indexSpawnBullet[0]);
-            InstantiateBullets(indexBullet[1], indexSpawnBullet[1]);
+            InstantiateBullets(bulletType, indexSpawnBullet[0]);
+            InstantiateBullets(bulletType, indexSpawnBullet[1]);
         }
         else
         {
             //Spawna bullet do spawnpoint central
-            InstantiateBullets(indexBullet[2], indexSpawnBullet[2]);
+            InstantiateBullets(bulletType, indexSpawnBullet[2]);
         }
         
         randomSpawn = Mathf.RoundToInt(Random.Range(minRandomSpawn, maxRandomSpawn));
@@ -105,7 +108,7 @@ public class EnemySpawnBullet : MonoBehaviour
             //Spawna na sequencia direita, centro esquerda
             for (int i = 0; i < 3; i++)
             {
-                InstantiateBullets(0, i);
+                InstantiateBullets(bulletType, i);
                 yield return new WaitForSeconds(1);
             }
             bulletSpawned = false;
@@ -115,7 +118,7 @@ public class EnemySpawnBullet : MonoBehaviour
             //Spawna na sequencia esquerda, centro direita
             for (int i = 2; i >= 0; i--)
             {
-                InstantiateBullets(0, i);
+                InstantiateBullets(bulletType, i);
                 yield return new WaitForSeconds(1);
             }
             bulletSpawned = false;
@@ -125,7 +128,7 @@ public class EnemySpawnBullet : MonoBehaviour
 
     IEnumerator SpawnMultipleBulletVariantThree()
     {
-        //Three é uma junção aleatoria da variação One, Two and Four
+        //Three é uma junção aleatoria da variação One and two
         yield return new WaitForSeconds(3);
 
         if (!spawnThree)
@@ -135,7 +138,7 @@ public class EnemySpawnBullet : MonoBehaviour
 
             if (random < 1)
             {
-                StartCoroutine(SpawnMultipleBulletVariantOne(new int[] { 0, 0, 0 }, new int[] { 0, 2, 1 }));
+                StartCoroutine(SpawnMultipleBulletVariantOne(new int[] { 0, 2, 1 }));
                 yield return new WaitForSeconds(2);
                 spawnThree = false;
             }

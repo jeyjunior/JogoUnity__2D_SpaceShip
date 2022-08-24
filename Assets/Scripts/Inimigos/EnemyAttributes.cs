@@ -33,8 +33,13 @@ public class EnemyAttributes : MonoBehaviour
 
         life = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
         power = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
-        exp = (Mathf.RoundToInt(Random.Range(valueMin, valueMax))) * level;
+
+        if (this.gameObject.CompareTag("Enemies")) exp = 2;
+        else if (this.gameObject.CompareTag("Boss")) exp = 30;
     }
+
+
+
 
     private void Awake()
     {

@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour
         if (currentExp >= maxExp)
         {
             currentExp -= maxExp;
-            maxExp *= 2;
+            maxExp += 20;
             lvlPlayer++;
             attributesPoints += 3; //pontos para usuario distribuir como quiser nos atributos
             spaceShip.expBarSlider.maxValue = maxExp; //atualiza exp max

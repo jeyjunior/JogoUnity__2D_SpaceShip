@@ -384,8 +384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35a6d2ea3762af5408cf3fabb306c8d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valueMin: 1000
-  valueMax: 1500
+  valueMin: 10000
+  valueMax: 20000
   life: 0
   power: 0
   exp: 0
@@ -403,7 +403,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet:
+  - {fileID: 7676825548384404326, guid: 75f8749500d4b714ebac9a7d75eeb283, type: 3}
+  - {fileID: 1937382023585820292, guid: ad72255d0de953a4eaceeed69295de7d, type: 3}
   - {fileID: 5855876000181751247, guid: 12c200182ad5eb94eb78626a9acc272b, type: 3}
+  - {fileID: 7628720830364049336, guid: fd0a5d4c1718a1747b445b017a8ab568, type: 3}
+  - {fileID: 7628720830364049336, guid: fd0a5d4c1718a1747b445b017a8ab568, type: 3}
   spawnPoint:
   - {fileID: 4685526599929161541}
   - {fileID: 4685526600914340203}
@@ -412,6 +416,7 @@ MonoBehaviour:
   maxRandomSpawn: 3
   bulletSpawned: 0
   variant: 2
+  bulletType: 0
 --- !u!1 &4685526600914340203
 GameObject:
   m_ObjectHideFlags: 0
