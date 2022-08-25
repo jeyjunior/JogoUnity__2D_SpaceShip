@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour
         {
             if(enemysSpawned <= 0)
             {
-                Instantiate(enemysGroup[0], spawnPosition, Quaternion.identity);
+                //Instantiate(enemysGroup[0], spawnPosition, Quaternion.identity);
             }
         }
         else
@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
         asteroidSpawned = true;
         yield return new WaitForSeconds(Random.Range(1, 30));
 
-        Instantiate(asteroids[0], new Vector2(Random.Range(-2.5f, 2.5f), 6), Quaternion.identity);
+        //Instantiate(asteroids[0], new Vector2(Random.Range(-2.5f, 2.5f), 6), Quaternion.identity);
 
     }
 }

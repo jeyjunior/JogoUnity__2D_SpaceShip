@@ -10,14 +10,14 @@ public class SimpleAliensSpawn : MonoBehaviour
     [Header("Control Spawn SimpleEnemies LEFT")]
     //Left
     float[] xPositionLeft = { -3, -3.7f, -4.4f, -5.1f, -5.8f, -6.5f };
-    public int maxSpawnSimpleEnemyLeft = 6;
+    public int maxSpawnSimpleEnemyLeft = 12;
     public int spawnedSimpleEnemyLeft;
 
     [Space(5)]
     [Header("Control Spawn SimpleEnemies RIGHT")]
     //Left
     float[] xPositionRight = { 3, 3.7f, 4.4f, 5.1f, 5.8f, 6.5f };
-    public int maxSpawnSimpleEnemyRight = 6;
+    public int maxSpawnSimpleEnemyRight = 12;
     public int spawnedSimpleEnemyRight;
 
     [Space(5)]

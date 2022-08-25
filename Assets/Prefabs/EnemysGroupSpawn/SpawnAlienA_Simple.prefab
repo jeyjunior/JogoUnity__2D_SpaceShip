@@ -51,3 +51,5 @@ MonoBehaviour:
   spawnedSimpleEnemyLeft: 0
   maxSpawnSimpleEnemyRight: 6
   spawnedSimpleEnemyRight: 0
+  randomSpawn: 0
+  enemyToSpawn: 0

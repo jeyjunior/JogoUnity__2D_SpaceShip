@@ -417,8 +417,8 @@ GameObject:
   - component: {fileID: 6025564491475629763}
   - component: {fileID: 737941005297730791}
   - component: {fileID: 7281719183498622360}
+  - component: {fileID: -8546679289132310920}
   - component: {fileID: 5778596942707324498}
-  - component: {fileID: -6548169315119348401}
   - component: {fileID: 702819527187814759}
   - component: {fileID: 6667703425426652109}
   m_Layer: 0
@@ -543,6 +543,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-8546679289132310920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6025564491475629762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5937573063627e340ae8c91dc0785d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endStartMovement: 0
+  horizontalDirection: 0
+  endPosition: 3
+  axisDir: 1
 --- !u!114 &5778596942707324498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,22 +571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad7fa9c7e375614696d85bd295a7864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endHorizontalMovement: 0
   loopMovingX: 1
-  delta: 10
---- !u!114 &-6548169315119348401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6025564491475629762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dacbdc74d0ac564b95c23ee4bd445e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startMoving: 0
-  speed: 1
+  loopCount: 10
 --- !u!114 &702819527187814759
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class SpaceShip : MonoBehaviour
         expBarSlider.value = gameController.currentExp;
 
         //Bullets Control and Spawn bullets 
-        InvokeRepeating("SpawnBullets", 0, gameController.spawnBulletDelay);
+        //InvokeRepeating("SpawnBullets", 0, gameController.spawnBulletDelay);
     }
 
     void Update()
