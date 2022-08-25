@@ -40,8 +40,6 @@ public class EnemyAttributes : MonoBehaviour
     }
 
 
-
-
     private void Awake()
     {
         AttributesValue();

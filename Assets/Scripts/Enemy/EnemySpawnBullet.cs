@@ -1,31 +1,30 @@
 using System.Collections;
 using UnityEngine;
 
+enum BulletVariant { SingleBullet, MultipleOne, MultipleTwo, MultipleThree };
+
+
 public class EnemySpawnBullet : MonoBehaviour
 {
 
     public GameObject[] bullet;
     public GameObject[] spawnPoint;
 
+    //bulletVariant: Qual o tiro e a sequencia que sera utilizada
     [Space(5)]
-    [Header("Random Time To Spawn Bullets")]
+    [Header("Bullet Type and Behavior")]
+    [SerializeField]
+    BulletVariant bulletVariant = new BulletVariant();
+
+    [Space(5)]
+    [Header("Delay para Spawnar Bullet")]
     public int minRandomSpawn;
     public int maxRandomSpawn;
-    int randomSpawn;
 
-    [Space(5)]
-    [Header("Check if bullet is spawned")]
-    public bool bulletSpawned = false;
-
-    //variant define qual a variação da sequencia dos spawns multiplos
-    //ex.: 3 bullets diferentes para 1 spawn point ou 3 spawnpoints e 1 bullet
-    [Space(5)]
-    [Header("Choose the sequence of spawnBullets")]
-    [Tooltip("1 = VariantOne Method")]
-    public int variant = 1;
-    public int bulletType; //Sorteio de qual será o tiro do chefe
-    bool spawnThree = false;
-
+    int randomSpawn; //Delay do proximo tiro randomSpawn = (min, max)
+    int bulletType; //bulletType = Random.Range(0, bullet.Length) - Spawna o tiro conforme o valor sorteado
+    bool spawnThree = false; //spawnThree usada para controlar MultipleThree
+    bool bulletSpawned = false; //Controlar se uma bullet foi ou não spawnada
 
 
     private void Start()
@@ -39,21 +38,24 @@ public class EnemySpawnBullet : MonoBehaviour
 
         if(!bulletSpawned)
         {
-            switch (variant)
+            switch (bulletVariant)
             {
-                case 0:
+                case BulletVariant.SingleBullet:
                     //Spawna apenas uma bullet em um unico spawnPoint
                     StartCoroutine(SpawnSingleBullet(bulletType));
                     break;
-                case 1:
+                case BulletVariant.MultipleOne:
                     //spawnpoint 0 = esquerda / 2 = direita / 1 = central
                     StartCoroutine(SpawnMultipleBulletVariantOne(new int[] {0,2,1}));
                     break;
-                case 2:
+                case BulletVariant.MultipleTwo:
                     StartCoroutine(SpawnMultipleBulletVariantTwo(Random.Range(0,2)));
                     break;
-                case 3:
+                case BulletVariant.MultipleThree:
                     StartCoroutine(SpawnMultipleBulletVariantThree());
+                    break;
+                default:
+                    StartCoroutine(SpawnSingleBullet(bulletType));
                     break;
             }
             

@@ -2,25 +2,20 @@ using UnityEngine;
 
 public class EnemyLoopMovement : MonoBehaviour
 {
-    //"Fim do loop
-    //TRUE = Fim do loop
+    //TRUE: Fim do loop
     bool endHorizontalMovement = false;
 
-    [Header("Loop sera Horizontal ou Vertical")]
-    [Tooltip("FALSE = Horizontal / TRUE = Vertical")]
-    public bool axisDirection;
-    //Obs: Indepenente do movimento do spawn, o objeto pode fazer loop em qualquer direção
-    
+    //FALSE: horizontalLoop / TRUE: verticalLoop (Definição no startMovement)
+    bool axisDirection; 
 
-    //Controle da direção do objeto:
-    //TRUE = Direita ou Baixo / FALSE = Esquerda ou Cima
+    //TRUE: Direita ou Baixo / FALSE: Esquerda ou Cima
     bool loopMoving = true; 
     float speed = 1f;
 
-    //Coletar endPosition para encerrar o loop na posição em que StartMove encerrou
+    //endPosition
     EnemyStartMovement enemyStartMovement;
 
-    //Controlar ciclo de repetições dos objetos (Apenas inimigos)
+    //Ciclo de repetição (Apenas inimigos)
     int loopCount = 3;
     int loopActual = 0;
 
@@ -32,23 +27,35 @@ public class EnemyLoopMovement : MonoBehaviour
 
     void Update()
     {
+
         if (!endHorizontalMovement)
         {
-            if (axisDirection) HorizontalMovement();
-            else VerticalMovement();
+            if (!axisDirection) HorizontalLoopMovement();
+            else VerticalLoopMovement();
         }
         else
         {
             //EndMove é ativada
-            this.gameObject.GetComponent<EnemyEndMovement>().enabled = true;
-            //LoopMove é desativada 
-            this.gameObject.GetComponent<EnemyLoopMovement>().enabled = false; 
+            if (!this.gameObject.CompareTag("Boss"))
+            {
+                this.gameObject.GetComponent<EnemyEndMovement>().enabled = true;
+                //LoopMove é desativada 
+                this.gameObject.GetComponent<EnemyLoopMovement>().enabled = false;
+            }
         }
+
     }
 
-    void HorizontalMovement()
+    public void AxisDirectionMovement(bool value)
     {
-        //transform.localPosition = new Vector2(SineMoving(), transform.position.y);
+        axisDirection = value;
+    }
+    public void MaxLoopCount(int value)
+    {
+        loopCount = value;
+    }
+    void HorizontalLoopMovement()
+    {
         if (loopMoving)
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -73,7 +80,7 @@ public class EnemyLoopMovement : MonoBehaviour
             else if (transform.position.x < -1.5f) loopMoving = true;
         }
     }
-    void VerticalMovement(){
+    void VerticalLoopMovement(){
         {
             if (loopMoving)
             {
@@ -88,16 +95,16 @@ public class EnemyLoopMovement : MonoBehaviour
                     loopActual++;
                     loopMoving = false;
                 }
-
             }
             else
             {
                 transform.Translate(Vector2.up * speed * Time.deltaTime);
 
-                if (transform.position.x >= enemyStartMovement.endPosition && !this.gameObject.CompareTag("Boss") && loopActual >= loopCount) endHorizontalMovement = true;
-                else if (transform.position.x > 3.5f) loopMoving = true;
+                if (transform.position.y >= enemyStartMovement.endPosition && !this.gameObject.CompareTag("Boss") && loopActual >= loopCount) endHorizontalMovement = true;
+                else if (transform.position.y > 3.5f) loopMoving = true;
             }
         }
 
     }
+
 }
