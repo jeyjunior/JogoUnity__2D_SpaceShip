@@ -3464,61 +3464,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368483, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: timeBossSpawn
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 7937707060621368484, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
       propertyPath: m_Name
       value: EnemyController
       objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368484, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: boss.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: boss.Array.data[1]
-      value: 
-      objectReference: {fileID: 4099453785704564122, guid: 9331624cf66690647958bdf32827546b, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: boss.Array.data[2]
-      value: 
-      objectReference: {fileID: 4685526600183450898, guid: b39b85d006dbed54fa27da131144bbb1, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: boss.Array.data[3]
-      value: 
-      objectReference: {fileID: 4000158991127327349, guid: f2b128f709de31e44aa827044cc8af6b, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: asteroids.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: enemysGroup.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: asteroids.Array.data[0]
-      value: 
-      objectReference: {fileID: 3841155475530587126, guid: 9ad833911546e59499a37523e20a004c, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: enemysGroup.Array.data[0]
-      value: 
-      objectReference: {fileID: 486463863710410720, guid: 4a3bdb365ac3f82499517e2e03b9fe5d, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: enemysGroup.Array.data[1]
-      value: 
-      objectReference: {fileID: 486463863710410720, guid: 201118614b358b5419d5a06df2d1f157, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: enemysGroup.Array.data[2]
-      value: 
-      objectReference: {fileID: 486463863710410720, guid: d24fbbbafa875474b93d555cf8da2e0f, type: 3}
-    - target: {fileID: 7937707060621368485, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
-      propertyPath: enemysGroup.Array.data[3]
-      value: 
-      objectReference: {fileID: 486463863710410720, guid: 8c9ef7c02bc91a346b56e8fe567ab506, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4c60bb3578b8fd449871677890cc586, type: 3}
